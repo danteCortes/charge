@@ -58,7 +58,7 @@ class ImportFileController extends Controller
             $request->input('separator'),
             $request->input('encoding'),
             $request->input('delimiter'),
-            $request->input('spreadsheat'),
+            $request->input('spreadsheet'),
             $request->input('first_row_headers'),
         );
         $response = $this->updateImportFilesUseCase->execute($dto, $id);

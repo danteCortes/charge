@@ -20,7 +20,7 @@ final class ImportFileMapper
             'separator' => $entity->decimalSeparator()?->value,
             'encoding' => $entity->fileEncoding()?->value,
             'delimiter' => $entity->fileDelimiter()?->value,
-            'spreadsheet' => $entity->spreadsheet()?->value,
+            'spreadsheet' => $entity->spreadsheet()?->value(),
             'status' => $entity->fileStatus()->value,
             'process_config_id' => $entity->processConfig()->value(),
             'first_row_headers' => $entity->isFirstRowHeaders(),

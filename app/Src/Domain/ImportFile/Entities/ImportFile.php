@@ -8,11 +8,11 @@ use App\Src\Domain\ImportFile\Enums\FileEncoding;
 use App\Src\Domain\ImportFile\Enums\FileFormat;
 use App\Src\Domain\ImportFile\Enums\FileStatus;
 use App\Src\Domain\ImportFile\Enums\FirstRowHeaders;
-use App\Src\Domain\ImportFile\Enums\Spreadsheet;
 use App\Src\Domain\ImportFile\ValueObjects\FileId;
 use App\Src\Domain\ImportFile\ValueObjects\FileName;
 use App\Src\Domain\ImportFile\ValueObjects\FileSize;
 use App\Src\Domain\ImportFile\ValueObjects\ProcessConfigId;
+use App\Src\Domain\ImportFile\ValueObjects\Spreadsheet;
 use App\Src\Domain\ImportFile\ValueObjects\StoragePath;
 
 final class ImportFile

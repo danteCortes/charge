@@ -14,7 +14,7 @@ final class ImportFileResponse
         public readonly ?string $decimalSeparator,
         public readonly ?string $fileEncoding,
         public readonly ?string $fileDelimiter,
-        public readonly ?string $spreadsheet,
+        public readonly ?int $spreadsheet,
         public readonly bool $firstRowHeaders,
         public readonly string $fileStatus,
     ) {}
@@ -29,7 +29,7 @@ final class ImportFileResponse
         ?string $decimalSeparator,
         ?string $fileEncoding,
         ?string $fileDelimiter,
-        ?string $spreadsheet,
+        ?int $spreadsheet,
         bool $firstRowHeaders,
         string $fileStatus,
     ): self {

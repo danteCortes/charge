@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Src\Domain\ImportFile\ValueObject;
+namespace App\Src\Domain\ImportFile\ValueObjects;
 
-final class SpreadSheet
+final class Spreadsheet
 {
     private function __construct(private readonly int $value) {}
 
     public static function create(int $value): self
     {
         if ($value <= 0) {
-            throw new InvalidArgumentException('La hoja de archivo debe ser mayor a cero.');
+            throw new \InvalidArgumentException('La hoja de archivo debe ser mayor a cero.');
         }
 
         return new self($value);
