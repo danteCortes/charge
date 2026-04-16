@@ -10,6 +10,7 @@ use App\Src\Domain\Repositories\ImportFileRepository;
 use App\Src\Domain\ValueObjects\FileName;
 use App\Src\Domain\ValueObjects\FileSize;
 use App\Src\Domain\ValueObjects\StoragePath;
+use App\Src\Domain\Factories\ImportFileFactory;
 
 final class StoreImportFilesUseCase
 {
@@ -18,17 +19,18 @@ final class StoreImportFilesUseCase
     public function execute(ArrayFilesDTO $filesDTO): string
     {
         $entities = array_map(function ($dto) {
-            return ImportFile::create(
-                id: null,
-                fileName: FileName::create($dto->fileName),
-                fileFormat: FileFormat::fromString($dto->fileFormat),
-                fileSize: FileSize::create($dto->fileSize),
-                storagePath: StoragePath::create($dto->storagePath),
-                decimalSeparator: null,
-                fileEncoding: null,
-                fileDelimiter: null,
-                spreadsheet: null,
-                fileStatus: FileStatus::PENDING
+            return ImportFileFactory::fromPrimitives(
+                null,
+                $dto->fileName,
+                $dto->fileFormat,
+                $dto->fileSize,
+                $dto->storagePath,
+                null,
+                null,
+                null,
+                null,
+                'Pendiente',
+                $dto->processConfig
             );
         }, $filesDTO->files);
 

@@ -13,6 +13,7 @@ use App\Src\Domain\ValueObjects\FileId;
 use App\Src\Domain\ValueObjects\FileName;
 use App\Src\Domain\ValueObjects\FileSize;
 use App\Src\Domain\ValueObjects\StoragePath;
+use App\Src\Domain\ValueObjects\ProcessConfigId;
 
 final class ImportFileFactory
 {
@@ -26,7 +27,8 @@ final class ImportFileFactory
         ?string $fileEncoding,
         ?string $fileDelimiter,
         ?int $spreadsheet,
-        string $fileStatus;
+        string $fileStatus,
+        string $processConfig,
     ): ImportFile
     {
         return ImportFile::create(
@@ -39,7 +41,8 @@ final class ImportFileFactory
             $fileEncoding ? FileEncoding::fromString($fileEncoding) : null,
             $fileDelimiter ? FileDelimiter::fromString($fileDelimiter): null,
             $spreadsheet ? Spreadsheet::fromString($spreadsheet) : null,
-            FileStatus::fromString($fileStatus)
+            FileStatus::fromString($fileStatus),
+            ProcessConfigId::create($processConfig),
         );
     }
 }

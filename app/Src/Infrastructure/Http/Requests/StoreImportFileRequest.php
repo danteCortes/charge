@@ -25,6 +25,7 @@ class StoreImportFileRequest extends FormRequest
         return [
             'files' => ['array', 'required', 'min:1'],
             'files.*' => ['file', 'required', 'mimes:csv,txt,xlsx,xml,json', 'max:10240'],
+            'process_config' => [ 'required', 'string', 'exists:process_configurations,_id' ]
         ];
     }
 }

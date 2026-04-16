@@ -5,6 +5,7 @@ namespace App\Src\Application\ProcessConfig\UseCases;
 use App\Src\Application\ProcessConfig\DTOs\ProcessConfigDTO;
 use App\Src\Application\ProcessConfig\Responses\ProcessConfigResponse;
 use App\Src\Domain\ProcessConfig\Repositories\ProcessConfigRepository;
+use App\Src\Domain\ProcessConfig\Factories\ProcessConfigFactory;
 
 class UpdateProcessConfigUseCase
 {
@@ -18,12 +19,27 @@ class UpdateProcessConfigUseCase
     }
 
     public function execute(
-        ProcessConfigDTO $dto
+        ProcessConfigDTO $dto, string $id
     ): ProcessConfigResponse {
-        $entity = $this->repository->save($dto);
+        
+        $entity = ProcessConfigFactory::fromPrimitives(
+            $id,
+            $dto->company,
+            $dto->loadType,
+            $dto->processType,
+            $dto->layout,
+            $dto->responsible,
+        );
+
+        $entity = $this->repository->save($entity);
 
         return ProcessConfigResponse::create(
-            $entity->value
+            $entity->id()?->value(),
+            $entity->company()?->value(),
+            $entity->loadType()?->value(),
+            $entity->processType()?->value,
+            $entity->layout()?->value(),
+            $entity->responsible()?->value()
         );
     }
 }

@@ -20,6 +20,7 @@ final class ImportFileMapper
             'delimiter' => $entity->fileDelimiter()?->value,
             'spreadsheet' => $entity->spreadsheet()?->value,
             'status' => $entity->fileStatus()->value,
+            'process_config_id' => $entity->processConfig()->value(),
         ];
 
         if ($entity->id()) {

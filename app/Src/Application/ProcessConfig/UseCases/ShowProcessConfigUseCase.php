@@ -4,6 +4,7 @@ namespace App\Src\Application\ProcessConfig\UseCases;
 
 use App\Src\Application\ProcessConfig\Responses\ProcessConfigResponse;
 use App\Src\Domain\ProcessConfig\Repositories\ProcessConfigRepository;
+use App\Src\Domain\ProcessConfig\ValueObjects\ProcessConfigId;
 
 class ShowProcessConfigUseCase
 {
@@ -24,10 +25,11 @@ class ShowProcessConfigUseCase
 
         return ProcessConfigResponse::create(
             $entity->id()?->value(),
-            $entity->loadType()->value(),
-            $entity->processType()->value,
-            $entity->layout()->value(),
-            $entity->responsible()->value()
+            $entity->company()?->value(),
+            $entity->loadType()?->value(),
+            $entity->processType()?->value,
+            $entity->layout()?->value(),
+            $entity->responsible()?->value()
         );
     }
 }

@@ -23,5 +23,6 @@ class ImportFileModel extends Model
         'delimiter',
         'spreadsheet',
         'status',
+        'process_config_id',
     ];
 }

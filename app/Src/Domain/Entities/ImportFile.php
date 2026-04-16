@@ -12,6 +12,7 @@ use App\Src\Domain\ValueObjects\FileId;
 use App\Src\Domain\ValueObjects\FileName;
 use App\Src\Domain\ValueObjects\FileSize;
 use App\Src\Domain\ValueObjects\StoragePath;
+use App\Src\Domain\ValueObjects\ProcessConfigId;
 
 final class ImportFile
 {
@@ -25,7 +26,8 @@ final class ImportFile
         private readonly ?FileEncoding $fileEncoding,
         private readonly ?FileDelimiter $fileDelimiter,
         private readonly ?Spreadsheet $spreadsheet,
-        private readonly FileStatus $fileStatus
+        private readonly FileStatus $fileStatus,
+        private readonly ProcessConfigId $processConfig
     ) {}
 
     public static function create(
@@ -38,7 +40,8 @@ final class ImportFile
         ?FileEncoding $fileEncoding,
         ?FileDelimiter $fileDelimiter,
         ?Spreadsheet $spreadsheet,
-        FileStatus $fileStatus
+        FileStatus $fileStatus,
+        ProcessConfigId $processConfig
     ): self {
         return new self(
             $id,
@@ -50,7 +53,8 @@ final class ImportFile
             $fileEncoding,
             $fileDelimiter,
             $spreadsheet,
-            $fileStatus
+            $fileStatus,
+            $processConfig
         );
     }
 
@@ -102,5 +106,10 @@ final class ImportFile
     public function fileStatus(): FileStatus
     {
         return $this->fileStatus;
+    }
+
+    public function processConfig(): ProcessConfigId
+    {
+        return $this->processConfig;
     }
 }

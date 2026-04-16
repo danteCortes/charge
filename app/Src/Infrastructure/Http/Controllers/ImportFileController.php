@@ -24,7 +24,8 @@ class ImportFileController extends Controller
                 $file->getClientOriginalname(),
                 $file->getClientOriginalExtension(),
                 $file->getSize(),
-                $path
+                $path,
+                $request->process_config
             );
 
             $dto = ArrayFilesDTO::create($filesDTO);

@@ -9,5 +9,7 @@ Route::get('/', function () {
 });
 
 Route::post('/import-file', [ImportFileController::class, 'store']);
+
 Route::post('/process-config', [ProcessConfigController::class, 'store']);
 Route::get('/process-config/{id}', [ProcessConfigController::class, 'show']);
+Route::put('/process-config/{id}', [ProcessConfigController::class, 'update']);

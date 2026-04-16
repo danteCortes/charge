@@ -10,7 +10,7 @@ final class ProcessConfigMapper
 {
     public static function toModel(ProcessConfig $entity): ProcessConfigModel
     {
-        $model = new ProcessConfigModel;
+        $model = $entity->id() ? ProcessConfigModel::find($entity->id()->value()) : new ProcessConfigModel;
 
         $data = [
             'company_id' => $entity->company()?->value(),
@@ -19,10 +19,6 @@ final class ProcessConfigMapper
             'responsible' => $entity->responsible()?->value(),
             'process_type' => $entity->processType()?->value,
         ];
-
-        if ($entity->id()) {
-            $data['id'] = $entity->id()->value();
-        }
 
         $model = $model->fill($data);
 
