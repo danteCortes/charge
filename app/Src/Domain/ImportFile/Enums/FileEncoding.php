@@ -14,7 +14,7 @@ enum FileEncoding: string
             'UTF-8' => self::UTF8,
             'Latin1' => self::LATIN1,
             'Windows-1252' => self::WINDOWS1252,
-            default => throw new InvalidArgumentException(
+            default => throw new \InvalidArgumentException(
                 "Invalid decimal separator: {$value}. ".
                 'Allowed values: UTF-8, Latin1, Windows-1252'
             )

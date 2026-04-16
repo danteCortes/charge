@@ -3,6 +3,7 @@
 namespace App\Src\Domain\ImportFile\Repositories;
 
 use App\Src\Domain\ImportFile\Entities\ImportFile;
+use App\Src\Domain\ImportFile\ValueObjects\FileId;
 
 interface ImportFileRepository
 {
@@ -11,5 +12,5 @@ interface ImportFileRepository
      */
     public function store(ImportFile $entity): ImportFile;
 
-    public function update(ImportFile $entity): ImportFile;
+    public function findById(FileId $id): ImportFile;
 }

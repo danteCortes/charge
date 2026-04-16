@@ -11,10 +11,10 @@ final class FileSize
     public static function create(int $value): self
     {
         if ($value <= 0) {
-            throw new InvalidArgumentException('El tamaño del archivo debe ser mayor a cero.');
+            throw new \InvalidArgumentException('El tamaño del archivo debe ser mayor a cero.');
         }
         if ($value > self::MAX_BYTES) {
-            throw new InvalidArgumentException('El tamaño del archivo debe ser menor a '.self::MAX_BYTES.'.');
+            throw new \InvalidArgumentException('El tamaño del archivo debe ser menor a '.self::MAX_BYTES.'.');
         }
 
         return new self($value);

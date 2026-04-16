@@ -4,21 +4,21 @@ namespace App\Src\Domain\ImportFile\Enums;
 
 enum FileDelimiter: string
 {
-    case SEMICOLON = 'Punto y coma (;)';
-    case COMMA = 'Coma (,)';
-    case VERTICAL_BAR = 'Barra vertical (|)';
-    case TAB = 'Tabulación';
+    case SEMICOLON = ';';
+    case COMMA = ',';
+    case VERTICAL_BAR = '|';
+    case TAB = "\t";
 
     public static function fromString(string $value): self
     {
         return match ($value) {
-            'Punto y coma (;)' => self::SEMICOLON,
-            'Coma (,)' => self::COMMA,
-            'Barra vertical (|)' => self::VERTICAL_BAR,
-            'Tabulación' => self::TAB,
-            default => throw new InvalidArgumentException(
-                "Invalid decimal separator: {$value}. ".
-                'Allowed values: Punto y coma (;), Coma (,), Barra vertical (|), Tabulación'
+            ';' => self::SEMICOLON,
+            ',' => self::COMMA,
+            '|' => self::VERTICAL_BAR,
+            "\t" => self::TAB,
+            default => throw new \InvalidArgumentException(
+                "Invalid file delimiter: {$value}. ".
+                'Allowed values: ;, ,, |, \t'
             )
         };
     }

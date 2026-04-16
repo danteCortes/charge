@@ -4,6 +4,7 @@ namespace App\Src\Infrastructure\ImportFile\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Src\Application\ImportFile\DTOs\ImportFileDTO;
+use App\Src\Application\ImportFile\UseCases\GenerateFilePreviewUseCase;
 use App\Src\Application\ImportFile\UseCases\StoreImportFilesUseCase;
 use App\Src\Application\ImportFile\UseCases\UpdateImportFileUseCase;
 use App\Src\Infrastructure\ImportFile\Http\Requests\StoreImportFileRequest;
@@ -15,6 +16,7 @@ class ImportFileController extends Controller
     public function __construct(
         private StoreImportFilesUseCase $storeImportFilesUseCase,
         private UpdateImportFileUseCase $updateImportFilesUseCase,
+        private GenerateFilePreviewUseCase $generateFilePreviewUseCase,
     ) {}
 
     public function store(StoreImportFileRequest $request): JsonResponse
@@ -65,5 +67,12 @@ class ImportFileController extends Controller
             'message' => 'Archivo modificado',
             'data' => $response,
         ]);
+    }
+
+    public function preview(string $id): JsonResponse
+    {
+        $result = $this->generateFilePreviewUseCase->execute($id);
+
+        return response()->json($result);
     }
 }

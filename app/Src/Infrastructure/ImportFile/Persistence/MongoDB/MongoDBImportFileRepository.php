@@ -4,7 +4,9 @@ namespace App\Src\Infrastructure\ImportFile\Persistence\MongoDB;
 
 use App\Src\Domain\ImportFile\Entities\ImportFile;
 use App\Src\Domain\ImportFile\Repositories\ImportFileRepository;
+use App\Src\Domain\ImportFile\ValueObjects\FileId;
 use App\Src\Infrastructure\ImportFile\Persistence\Mappers\ImportFileMapper;
+use App\Src\Infrastructure\ImportFile\Persistence\Models\ImportFileModel;
 
 final class MongoDBImportFileRepository implements ImportFileRepository
 {
@@ -16,10 +18,9 @@ final class MongoDBImportFileRepository implements ImportFileRepository
         return ImportFileMapper::toEntity($model);
     }
 
-    public function update(ImportFile $entity): ImportFile
+    public function findById(FileId $id): ImportFile
     {
-        $model = ImportFileMapper::toModel($entity);
-        $model->save();
+        $model = ImportFileModel::find($id->value());
 
         return ImportFileMapper::toEntity($model);
     }

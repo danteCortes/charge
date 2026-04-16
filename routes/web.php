@@ -10,6 +10,7 @@ Route::get('/', function () {
 
 Route::post('/import-file', [ImportFileController::class, 'store']);
 Route::put('/import-file/{id}', [ImportFileController::class, 'update']);
+Route::get('/import-file/{id}/preview', [ImportFileController::class, 'preview']);
 
 Route::post('/process-config', [ProcessConfigController::class, 'store']);
 Route::get('/process-config/{id}', [ProcessConfigController::class, 'show']);
