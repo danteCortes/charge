@@ -9,7 +9,7 @@ final class ImportFileDTO
         public readonly string $fileFormat,
         public readonly int $fileSize,
         public readonly string $storagePath
-    ){}
+    ) {}
 
     public static function create(
         string $fileName,

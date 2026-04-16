@@ -3,18 +3,17 @@
 namespace App\Src\Application\UseCases;
 
 use App\Src\Application\DTOs\ArrayFilesDTO;
-use App\Src\Domain\Repositories\ImportFileRepository;
 use App\Src\Domain\Entities\ImportFile;
+use App\Src\Domain\Enums\FileFormat;
+use App\Src\Domain\Enums\FileStatus;
+use App\Src\Domain\Repositories\ImportFileRepository;
 use App\Src\Domain\ValueObjects\FileName;
 use App\Src\Domain\ValueObjects\FileSize;
 use App\Src\Domain\ValueObjects\StoragePath;
-use App\Src\Domain\Enums\FileFormat;
-use App\Src\Domain\Enums\FileStatus;
-
 
 final class StoreImportFilesUseCase
 {
-    public function __construct(private readonly ImportFileRepository $repository){}
+    public function __construct(private readonly ImportFileRepository $repository) {}
 
     public function execute(ArrayFilesDTO $filesDTO): string
     {

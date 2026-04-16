@@ -4,13 +4,14 @@ namespace App\Src\Domain\ValueObject;
 
 final class SpreadSheet
 {
-    private function __construct(private readonly int $value){}
+    private function __construct(private readonly int $value) {}
 
     public static function create(int $value): self
     {
-        if($value <= 0){
-            throw new InvalidArgumentException("La hoja de archivo debe ser mayor a cero.");
+        if ($value <= 0) {
+            throw new InvalidArgumentException('La hoja de archivo debe ser mayor a cero.');
         }
+
         return new self($value);
     }
 
@@ -24,9 +25,10 @@ final class SpreadSheet
         return $this->value === $other->value;
     }
 
-    public function toString(): string {
+    public function toString(): string
+    {
         return '{
-            "file_id": "' . $this->value . '"
+            "file_id": "'.$this->value.'"
         }';
     }
 }

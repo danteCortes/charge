@@ -2,9 +2,9 @@
 
 namespace App\Src\Infrastructure\Persistence\Mappers;
 
-use App\Src\Infrastructure\Persistence\Models\ImportFileModel;
 use App\Src\Domain\Entities\ImportFile;
 use App\Src\Domain\Factories\ImportFileFactory;
+use App\Src\Infrastructure\Persistence\Models\ImportFileModel;
 
 final class ImportFileMapper
 {
@@ -22,10 +22,10 @@ final class ImportFileMapper
             'status' => $entity->fileStatus()->value,
         ];
 
-        if($entity->id()){
+        if ($entity->id()) {
             $data['id'] = $entity->id()->value();
         }
-        $model = new ImportFileModel();
+        $model = new ImportFileModel;
         $model->fill($data);
 
         return $model;

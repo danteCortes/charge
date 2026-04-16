@@ -6,10 +6,10 @@ use InvalidArgumentException;
 
 enum FileFormat: string
 {
-    case CSV  = 'CSV';
-    case TXT  = 'TXT';
+    case CSV = 'CSV';
+    case TXT = 'TXT';
     case XLSX = 'XLSX';
-    case XML  = 'XML';
+    case XML = 'XML';
     case JSON = 'JSON';
 
     public function isSpreadsheet(): bool
@@ -24,7 +24,7 @@ enum FileFormat: string
 
     public static function fromString(string $value): self
     {
-        return match(strtoupper($value)) {
+        return match (strtoupper($value)) {
             'CSV' => self::CSV,
             'TXT' => self::TXT,
             'XLSX' => self::XLSX,
@@ -32,7 +32,7 @@ enum FileFormat: string
             'JSON' => self::JSON,
             default => throw new InvalidArgumentException(
                 "Invalid decimal separator: {$value}. ".
-                "Allowed values: CSV, TXT, XLSX, XML, JSON"
+                'Allowed values: CSV, TXT, XLSX, XML, JSON'
             )
         };
     }

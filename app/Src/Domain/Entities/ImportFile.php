@@ -3,10 +3,10 @@
 namespace App\Src\Domain\Entities;
 
 use App\Src\Domain\Enums\DecimalSeparator;
-use App\Src\Domain\Enums\FileFormat;
-use App\Src\Domain\Enums\FileEncoding;
-use App\Src\Domain\Enums\FileStatus;
 use App\Src\Domain\Enums\FileDelimiter;
+use App\Src\Domain\Enums\FileEncoding;
+use App\Src\Domain\Enums\FileFormat;
+use App\Src\Domain\Enums\FileStatus;
 use App\Src\Domain\Enums\Spreadsheet;
 use App\Src\Domain\ValueObjects\FileId;
 use App\Src\Domain\ValueObjects\FileName;
@@ -26,7 +26,7 @@ final class ImportFile
         private readonly ?FileDelimiter $fileDelimiter,
         private readonly ?Spreadsheet $spreadsheet,
         private readonly FileStatus $fileStatus
-    ){}
+    ) {}
 
     public static function create(
         ?FileId $id,
@@ -98,7 +98,7 @@ final class ImportFile
     {
         return $this->spreadsheet;
     }
-    
+
     public function fileStatus(): FileStatus
     {
         return $this->fileStatus;

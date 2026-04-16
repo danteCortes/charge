@@ -8,16 +8,15 @@ use App\Src\Infrastructure\Persistence\Mappers\ImportFileMapper;
 final class MongoDBImportFileRepository implements ImportFileRepository
 {
     /**
-     * @param ImportFile[] $files
+     * @param  ImportFile[]  $files
      */
     public function store(array $files): string
     {
-        foreach($files as $importFile)
-        {
+        foreach ($files as $importFile) {
             $model = ImportFileMapper::toModel($importFile);
             $model->save();
         }
 
-        return "Archivos guardados correctamente.";
+        return 'Archivos guardados correctamente.';
     }
 }
