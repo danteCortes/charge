@@ -4,8 +4,8 @@ namespace App\Src\Application\ProcessConfig\UseCases;
 
 use App\Src\Application\ProcessConfig\DTOs\ProcessConfigDTO;
 use App\Src\Application\ProcessConfig\Responses\ProcessConfigResponse;
-use App\Src\Domain\ProcessConfig\Repositories\ProcessConfigRepository;
 use App\Src\Domain\ProcessConfig\Factories\ProcessConfigFactory;
+use App\Src\Domain\ProcessConfig\Repositories\ProcessConfigRepository;
 
 class UpdateProcessConfigUseCase
 {
@@ -21,7 +21,7 @@ class UpdateProcessConfigUseCase
     public function execute(
         ProcessConfigDTO $dto, string $id
     ): ProcessConfigResponse {
-        
+
         $entity = ProcessConfigFactory::fromPrimitives(
             $id,
             $dto->company,
