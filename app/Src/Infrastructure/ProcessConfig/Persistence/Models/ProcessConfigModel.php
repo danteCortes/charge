@@ -3,10 +3,12 @@
 namespace App\Src\Infrastructure\ProcessConfig\Persistence\Models;
 
 use App\Src\Infrastructure\Company\Persistence\Models\CompanyModel;
+use App\Src\Infrastructure\ImportFile\Persistence\Models\ImportFileModel;
 use App\Src\Infrastructure\Layout\Persistence\Models\LayoutModel;
 use App\Src\Infrastructure\LoadType\Persistence\Models\LoadTypeModel;
 use MongoDB\Laravel\Eloquent\Model;
 use MongoDB\Laravel\Relations\BelongsTo;
+use MongoDB\Laravel\Relations\HasMany;
 
 class ProcessConfigModel extends Model
 {
@@ -39,5 +41,10 @@ class ProcessConfigModel extends Model
     public function layout(): BelongsTo
     {
         return $this->belongsTo(LayoutModel::class);
+    }
+
+    public function files(): HasMany
+    {
+        return $this->hasMany(ImportFileModel::class, 'process_config_id', '_id');
     }
 }

@@ -27,4 +27,9 @@ class ProcessConfigController
     {
         return $this->service->update($request, $id);
     }
+
+    public function files(string $id): JsonResponse
+    {
+        return $this->service->files($id);
+    }
 }

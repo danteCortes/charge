@@ -2,6 +2,7 @@
 
 namespace App\Src\Infrastructure\ProcessConfig\Providers;
 
+use App\Src\Application\ProcessConfig\UseCases\GetFilesByProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\SaveProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\ShowProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\UpdateProcessConfigUseCase;
@@ -22,6 +23,9 @@ class ProcessConfigServiceProvider extends ServiceProvider
         });
         $this->app->bind(UpdateProcessConfigUseCase::class, function ($app) {
             return UpdateProcessConfigUseCase::create($app->make(ProcessConfigRepository::class));
+        });
+        $this->app->bind(GetFilesByProcessConfigUseCase::class, function ($app) {
+            return GetFilesByProcessConfigUseCase::create($app->make(ProcessConfigRepository::class));
         });
     }
 

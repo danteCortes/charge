@@ -11,7 +11,7 @@ class LoadTypeService
         private readonly ListLoadTypesUseCase $listUseCase,
     ) {}
 
-    public function index(Request $request): JsonResponse
+    public function index(): JsonResponse
     {
         $response = $this->listUseCase->execute();
 

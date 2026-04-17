@@ -35,7 +35,6 @@ class ProcessConfig
             $processType,
             $layout,
             $responsible,
-            $processConfigId,
         );
     }
 

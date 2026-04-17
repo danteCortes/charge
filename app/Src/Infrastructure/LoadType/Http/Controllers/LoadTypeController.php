@@ -13,6 +13,6 @@ class LoadTypeController
 
     public function index(): JsonResponse
     {
-        return $this->service->index($request);
+        return $this->service->index();
     }
 }

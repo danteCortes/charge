@@ -3,6 +3,7 @@
 namespace App\Src\Infrastructure\ProcessConfig\Http\Services;
 
 use App\Src\Application\ProcessConfig\DTOs\ProcessConfigDTO;
+use App\Src\Application\ProcessConfig\UseCases\GetFilesByProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\SaveProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\ShowProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\UpdateProcessConfigUseCase;
@@ -16,6 +17,7 @@ class ProcessConfigService
         private readonly SaveProcessConfigUseCase $saveUseCase,
         private readonly ShowProcessConfigUseCase $showUseCase,
         private readonly UpdateProcessConfigUseCase $updateUseCase,
+        private readonly GetFilesByProcessConfigUseCase $getFilesUseCase,
     ) {}
 
     public function store(CreateProcessConfigRequest $request): JsonResponse
@@ -54,5 +56,12 @@ class ProcessConfigService
         );
 
         return response()->json($response, 201);
+    }
+
+    public function files(string $id): JsonResponse
+    {
+        $response = $this->getFilesUseCase->execute($id);
+
+        return response()->json($response);
     }
 }

@@ -10,4 +10,9 @@ interface ProcessConfigRepository
     public function save(ProcessConfig $entity): ProcessConfig;
 
     public function findById(ProcessConfigId $id): ?ProcessConfig;
+
+    /**
+     * @return App\Src\Domain\ImportFile\Entities\ImportFile[]
+     */
+    public function files(ProcessConfigId $id): array;
 }
