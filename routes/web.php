@@ -20,3 +20,4 @@ Route::put('/process-config/{id}', [ProcessConfigController::class, 'update']);
 
 Route::get('/company', [CompanyController::class, 'index']);
 Route::get('/layout', [LayoutController::class, 'index']);
+Route::get('/load-type', [LayoutController::class, 'index']);
