@@ -1,8 +1,11 @@
 <?php
 
+uses(TestCase::class);
+
 use App\Src\Domain\ImportFile\Enums\FileFormat;
 use App\Src\Domain\ImportFile\Factories\ImportFileFactory;
 use App\Src\Infrastructure\ImportFile\Persistence\Implements\CsvPreviewGenerator;
+use Tests\TestCase;
 
 function makeFile(string $content, array $overrides = [])
 {

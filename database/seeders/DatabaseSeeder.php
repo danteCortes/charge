@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             CompanySeeder::class,
             LayoutSeeder::class,
             LoadTypeSeeder::class,
+            SystemFieldSeeder::class,
         ]);
     }
 }

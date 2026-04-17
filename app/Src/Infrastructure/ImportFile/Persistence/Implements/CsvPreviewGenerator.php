@@ -6,7 +6,6 @@ use App\Src\Domain\ImportFile\Entities\ImportFile;
 use App\Src\Domain\ImportFile\Enums\FileFormat;
 use App\Src\Domain\ImportFile\Repositories\FilePreviewGenerator;
 use App\Src\Domain\ImportFile\ValueObjects\FilePreview;
-use Illuminate\Support\Facades\Storage;
 
 class CsvPreviewGenerator implements FilePreviewGenerator
 {
@@ -21,7 +20,11 @@ class CsvPreviewGenerator implements FilePreviewGenerator
     public function preview(ImportFile $file): FilePreview
     {
         $relativePath = $file->storagePath()->value();
-        $path = Storage::disk('local')->path($relativePath);
+        if ($this->isAbsolutePath($relativePath)) {
+            $path = $relativePath;
+        } else {
+            $path = storage_path('app/private/'.$relativePath);
+        }
         $delimiter = $file->fileDelimiter()?->value ?? ',';
         $encoding = $file->fileEncoding()?->value;
         $hasHeader = $file->isFirstRowHeaders();
@@ -105,5 +108,11 @@ class CsvPreviewGenerator implements FilePreviewGenerator
         }
 
         return $row;
+    }
+
+    private function isAbsolutePath(string $path): bool
+    {
+        return str_starts_with($path, DIRECTORY_SEPARATOR)
+            || preg_match('/^[A-Za-z]:\\\\/', $path); // Windows
     }
 }
