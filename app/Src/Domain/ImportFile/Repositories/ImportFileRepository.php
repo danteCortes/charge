@@ -13,4 +13,6 @@ interface ImportFileRepository
     public function store(ImportFile $entity): ImportFile;
 
     public function findById(FileId $id): ImportFile;
+
+    public function delete(FileId $id): void;
 }

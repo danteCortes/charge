@@ -3,6 +3,7 @@
 namespace App\Src\Infrastructure\ImportFile\Providers;
 
 use App\Src\Application\ImportFile\Services\FilePreviewGeneratorResolver;
+use App\Src\Application\ImportFile\UseCases\DeleteImportFileUseCase;
 use App\Src\Domain\ImportFile\Repositories\ImportFileRepository;
 use App\Src\Infrastructure\ImportFile\Persistence\Implements\CsvPreviewGenerator;
 use App\Src\Infrastructure\ImportFile\Persistence\Implements\XlsxPreviewGenerator;
@@ -21,6 +22,9 @@ class ChargeServiceProvider extends ServiceProvider
                 // new JsonPreviewGenerator(),
                 // new XmlPreviewGenerator(),
             ]);
+        });
+        $this->app->bind(DeleteImportFileUseCase::class, function ($app) {
+            return DeleteImportFileUseCase::create($app->make(ImportFileRepository::class));
         });
     }
 }

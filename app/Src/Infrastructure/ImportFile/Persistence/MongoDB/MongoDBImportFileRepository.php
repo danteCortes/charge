@@ -24,4 +24,10 @@ final class MongoDBImportFileRepository implements ImportFileRepository
 
         return ImportFileMapper::toEntity($model);
     }
+
+    public function delete(FileId $id): void
+    {
+        $model = ImportFileModel::find($id->value());
+        $model->delete();
+    }
 }

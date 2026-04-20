@@ -4,6 +4,7 @@ namespace App\Src\Infrastructure\ImportFile\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Src\Application\ImportFile\DTOs\ImportFileDTO;
+use App\Src\Application\ImportFile\UseCases\DeleteImportFileUseCase;
 use App\Src\Application\ImportFile\UseCases\GenerateFilePreviewUseCase;
 use App\Src\Application\ImportFile\UseCases\StoreImportFilesUseCase;
 use App\Src\Application\ImportFile\UseCases\UpdateImportFileUseCase;
@@ -17,6 +18,7 @@ class ImportFileController extends Controller
         private StoreImportFilesUseCase $storeImportFilesUseCase,
         private UpdateImportFileUseCase $updateImportFilesUseCase,
         private GenerateFilePreviewUseCase $generateFilePreviewUseCase,
+        private DeleteImportFileUseCase $deleteImportFileUseCase,
     ) {}
 
     public function store(StoreImportFileRequest $request): JsonResponse
@@ -74,5 +76,12 @@ class ImportFileController extends Controller
         $result = $this->generateFilePreviewUseCase->execute($id);
 
         return response()->json($result);
+    }
+
+    public function delete(string $id): JsonResponse
+    {
+        $this->deleteImportFileUseCase->execute($id);
+
+        return response()->json('El archivo fué eliminado con éxito.');
     }
 }

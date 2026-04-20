@@ -26,9 +26,16 @@ class MongoDBProcessConfigRepository implements ProcessConfigRepository
         return $model ? ProcessConfigMapper::toEntity($model) : null;
     }
 
+    /**
+     * @return App\Src\Domain\ImportFile\Entities\ImportFile[]
+     */
     public function files(ProcessConfigId $id): array
     {
         $model = ProcessConfigModel::find($id->value());
+
+        if (! $model) {
+            return [];
+        }
 
         $entities = [];
         foreach ($model->files as $file) {
