@@ -23,6 +23,10 @@ class ShowProcessConfigUseCase
 
         $entity = $this->repository->findById(ProcessConfigId::create($id));
 
+        if (! $entity) {
+            abort(404, 'Entidad no encontrada.');
+        }
+
         return ProcessConfigResponse::create(
             $entity->id()?->value(),
             $entity->company()?->value(),

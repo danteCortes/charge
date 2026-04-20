@@ -10,7 +10,10 @@ use App\Src\Application\ImportFile\UseCases\StoreImportFilesUseCase;
 use App\Src\Application\ImportFile\UseCases\UpdateImportFileUseCase;
 use App\Src\Infrastructure\ImportFile\Http\Requests\StoreImportFileRequest;
 use App\Src\Infrastructure\ImportFile\Http\Requests\UpdateImportFileRequest;
+use App\Src\Infrastructure\ImportFile\Persistence\Models\ImportFileModel;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ImportFileController extends Controller
 {
@@ -83,5 +86,26 @@ class ImportFileController extends Controller
         $this->deleteImportFileUseCase->execute($id);
 
         return response()->json('El archivo fué eliminado con éxito.');
+    }
+
+    public function spreadsheets(string $id): JsonResponse
+    {
+        $model = ImportFileModel::find($id);
+
+        // Obtener la ruta completa usando Storage
+        $fullPath = Storage::disk('private')->path($model->path);
+
+        // Verificar si existe
+        if (! Storage::disk('private')->exists($model->path)) {
+            return response()->json([
+                'error' => 'El archivo no existe',
+            ], 404);
+        }
+
+        $reader = IOFactory::createReaderForFile($fullPath);
+        $spreadsheet = $reader->load($fullPath);
+        $sheetNames = $spreadsheet->getSheetNames();
+
+        return response()->json($sheetNames);
     }
 }

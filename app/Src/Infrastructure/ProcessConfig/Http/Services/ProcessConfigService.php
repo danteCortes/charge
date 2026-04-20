@@ -44,6 +44,11 @@ class ProcessConfigService
 
     public function update(UpdateProcessConfigRequest $request, string $id): JsonResponse
     {
+        $entity = $this->showUseCase->execute($id);
+        if (! $entity) {
+            abort(404);
+        }
+
         $response = $this->updateUseCase->execute(
             ProcessConfigDTO::create(
                 $request->input('company'),
