@@ -8,17 +8,17 @@ use App\Src\Domain\ImportFile\Enums\FileDelimiter;
 use App\Src\Domain\ImportFile\Enums\FileEncoding;
 use App\Src\Domain\ImportFile\Enums\FileFormat;
 use App\Src\Domain\ImportFile\Enums\FirstRowHeaders;
+use App\Src\Domain\ImportFile\ValueObjects\DuplicatedRows;
+use App\Src\Domain\ImportFile\ValueObjects\ErrorRows;
 use App\Src\Domain\ImportFile\ValueObjects\FileId;
 use App\Src\Domain\ImportFile\ValueObjects\FileName;
 use App\Src\Domain\ImportFile\ValueObjects\FileSize;
+use App\Src\Domain\ImportFile\ValueObjects\Key;
+use App\Src\Domain\ImportFile\ValueObjects\Position;
 use App\Src\Domain\ImportFile\ValueObjects\ProcessConfigId;
 use App\Src\Domain\ImportFile\ValueObjects\Spreadsheet;
 use App\Src\Domain\ImportFile\ValueObjects\StoragePath;
-use App\Src\Domain\ImportFile\ValueObjects\Key;
-use App\Src\Domain\ImportFile\ValueObjects\Position;
 use App\Src\Domain\ImportFile\ValueObjects\ValidRows;
-use App\Src\Domain\ImportFile\ValueObjects\DuplicatedRows;
-use App\Src\Domain\ImportFile\ValueObjects\ErrorRows;
 
 final class ImportFileFactory
 {

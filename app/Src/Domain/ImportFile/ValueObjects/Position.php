@@ -6,17 +6,19 @@ use InvalidArgumentException;
 
 final class Position
 {
-    private function __construct(private readonly int $value){}
+    private function __construct(private readonly int $value) {}
 
-    public static function create(int $value): self {
+    public static function create(int $value): self
+    {
         self::validate($value);
+
         return new self($value);
     }
 
     private static function validate(int $value): void
     {
-        if ($value < =) {
-            throw new InvalidArgumentException('La posición del archivo no debe ser nemor de cero.');
+        if ($value < 0) {
+            throw new InvalidArgumentException('La posición del archivo no debe ser menor de cero.');
         }
     }
 
@@ -30,10 +32,10 @@ final class Position
         return $this->value === $other->value;
     }
 
-    public function __toString(): int
+    public function __toString(): string
     {
         return '{
-            "value": "' . $this->value . '"
+            "value": "'.$this->value.'"
         }';
     }
 }

@@ -7,14 +7,17 @@ use App\Src\Domain\ImportFile\Enums\FileDelimiter;
 use App\Src\Domain\ImportFile\Enums\FileEncoding;
 use App\Src\Domain\ImportFile\Enums\FileFormat;
 use App\Src\Domain\ImportFile\Enums\FirstRowHeaders;
+use App\Src\Domain\ImportFile\ValueObjects\DuplicatedRows;
+use App\Src\Domain\ImportFile\ValueObjects\ErrorRows;
 use App\Src\Domain\ImportFile\ValueObjects\FileId;
 use App\Src\Domain\ImportFile\ValueObjects\FileName;
 use App\Src\Domain\ImportFile\ValueObjects\FileSize;
+use App\Src\Domain\ImportFile\ValueObjects\Key;
+use App\Src\Domain\ImportFile\ValueObjects\Position;
 use App\Src\Domain\ImportFile\ValueObjects\ProcessConfigId;
 use App\Src\Domain\ImportFile\ValueObjects\Spreadsheet;
 use App\Src\Domain\ImportFile\ValueObjects\StoragePath;
-use App\Src\Domain\ImportFile\ValueObjects\Key;
-use App\Src\Domain\ImportFile\ValueObjects\Position;
+use App\Src\Domain\ImportFile\ValueObjects\ValidRows;
 
 final class ImportFile
 {
@@ -130,23 +133,28 @@ final class ImportFile
         return $this->firstRowHeaders === FirstRowHeaders::YES;
     }
 
-    public function key(): ?Key {
+    public function key(): ?Key
+    {
         return $this->key;
     }
 
-    public function position(): ?Position {
+    public function position(): ?Position
+    {
         return $this->position;
     }
-    
-    public function validRows(): ValidRows {
+
+    public function validRows(): ValidRows
+    {
         return $this->validRows;
     }
 
-    public function duplicatedRows(): DuplicatedRows {
+    public function duplicatedRows(): DuplicatedRows
+    {
         return $this->duplicatedRows;
     }
 
-    public function errorRows(): ErrorRows {
+    public function errorRows(): ErrorRows
+    {
         return $this->errorRows;
     }
 }

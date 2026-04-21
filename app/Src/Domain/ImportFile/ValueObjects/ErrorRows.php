@@ -6,10 +6,12 @@ use InvalidArgumentException;
 
 final class ErrorRows
 {
-    private function __construct(private readonly int $value){}
+    private function __construct(private readonly int $value) {}
 
-    public static function create(int $value): self {
+    public static function create(int $value): self
+    {
         self::validate($value);
+
         return new self($value);
     }
 
@@ -30,10 +32,10 @@ final class ErrorRows
         return $this->value === $other->value;
     }
 
-    public function __toString(): int
+    public function __toString(): string
     {
         return '{
-            "value": "' . $this->value . '"
+            "value": "'.$this->value.'"
         }';
     }
 }

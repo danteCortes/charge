@@ -23,9 +23,13 @@ final class UpdateImportFileUseCase
             $dto->fileEncoding,
             $dto->fileDelimiter,
             $dto->spreadsheet,
-            'Pendiente',
             $dto->processConfig,
             $dto->firstRowHeaders,
+            $dto->key,
+            $dto->position,
+            $dto->validRows,
+            $dto->duplicatedRows,
+            $dto->errorRows,
         );
 
         $entity = $this->repository->store($entity);
@@ -36,13 +40,17 @@ final class UpdateImportFileUseCase
             $entity->fileFormat()->value,
             $entity->fileSize()->value(),
             $entity->storagePath()->value(),
-            $entity->processConfig()->value(),
             $entity->decimalSeparator()?->value,
             $entity->fileEncoding()?->value,
             $entity->fileDelimiter()?->value,
             $entity->spreadsheet()?->value(),
+            $entity->processConfig()->value(),
             $entity->isFirstRowHeaders(),
-            $entity->fileStatus()->value,
+            $entity->key()?->value(),
+            $entity->position()?->value(),
+            $entity->validRows()->value(),
+            $entity->duplicatedRows()->value(),
+            $entity->errorRows()->value(),
         );
     }
 }

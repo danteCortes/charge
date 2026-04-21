@@ -14,16 +14,21 @@ class UpdateImportFileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
-            'format' => ['required', 'string', 'in:CSV,XLSX,TXT,XML,JSON'],
-            'size' => ['required', 'integer'],
-            'path' => ['required', 'string'],
-            'separator' => ['required', 'string'],
-            'encoding' => ['required', 'string'],
-            'delimiter' => ['nullable', 'string'],
-            'spreadsheet' => ['nullable', 'integer'],
-            'first_row_headers' => ['required', 'boolean'],
-            'process_config' => ['required', 'string', 'exists:process_configurations,_id'],
+            'fileName' => ['required', 'string'],
+            'fileFormat' => ['required', 'string', 'in:CSV,XLSX,TXT,XML,JSON'],
+            'fileSize' => ['required', 'integer'],
+            'storagePath' => ['required', 'string'],
+            'decimalSeparator' => ['nullable', 'string'],
+            'fileEncoding' => ['nullable', 'string'],
+            'fileDelimiter' => ['nullable', 'string'],
+            'spreadsheet' => ['nullable', 'string'],
+            'processConfig' => ['required', 'string', 'exists:process_configurations,_id'],
+            'firstRowHeaders' => ['required', 'boolean'],
+            'key' => ['nullable', 'string'],
+            'position' => ['nullable', 'integer'],
+            'validRows' => ['nullable', 'integer'],
+            'duplicatedRows' => ['nullable', 'integer'],
+            'errorRows' => ['nullable', 'integer'],
         ];
     }
 

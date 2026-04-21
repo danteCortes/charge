@@ -60,16 +60,21 @@ class ImportFileController extends Controller
     public function update(UpdateImportFileRequest $request, string $id): JsonResponse
     {
         $dto = ImportFileDTO::create(
-            $request->input('name'),
-            $request->input('format'),
-            $request->input('size'),
-            $request->input('path'),
-            $request->input('process_config'),
-            $request->input('separator'),
-            $request->input('encoding'),
-            $request->input('delimiter'),
+            $request->input('fileName'),
+            $request->input('fileFormat'),
+            $request->input('fileSize'),
+            $request->input('storagePath'),
+            $request->input('decimalSeparator'),
+            $request->input('fileEncoding'),
+            $request->input('fileDelimiter'),
             $request->input('spreadsheet'),
-            $request->input('first_row_headers'),
+            $request->input('processConfig'),
+            $request->input('firstRowHeaders'),
+            $request->input('key'),
+            $request->input('position'),
+            $request->input('validRows'),
+            $request->input('duplicatedRows'),
+            $request->input('errorRows'),
         );
         $response = $this->updateImportFilesUseCase->execute($dto, $id);
 

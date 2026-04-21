@@ -6,16 +6,18 @@ use InvalidArgumentException;
 
 final class DuplicatedRows
 {
-    private function __construct(private readonly int $value){}
+    private function __construct(private readonly int $value) {}
 
-    public static function create(int $value): self {
+    public static function create(int $value): self
+    {
         self::validate($value);
+
         return new self($value);
     }
 
     private static function validate(int $value): void
     {
-        if (empty($value)) {
+        if ($value < 0) {
             throw new InvalidArgumentException('Las filas duplicadas del archivo no deben ser menor de cero.');
         }
     }
@@ -30,10 +32,10 @@ final class DuplicatedRows
         return $this->value === $other->value;
     }
 
-    public function __toString(): int
+    public function __toString(): string
     {
         return '{
-            "value": "' . $this->value . '"
+            "value": "'.$this->value.'"
         }';
     }
 }
