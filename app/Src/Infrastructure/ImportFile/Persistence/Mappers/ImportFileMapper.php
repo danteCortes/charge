@@ -13,17 +13,21 @@ final class ImportFileMapper
         $model = $entity->id() ? ImportFileModel::find($entity->id()->value()) : new ImportFileModel;
 
         $data = [
-            'name' => $entity->fileName()->value(),
-            'format' => $entity->fileFormat()->value,
-            'size' => $entity->fileSize()->value(),
-            'path' => $entity->storagePath()->value(),
-            'separator' => $entity->decimalSeparator()?->value,
-            'encoding' => $entity->fileEncoding()?->value,
-            'delimiter' => $entity->fileDelimiter()?->value,
-            'spreadsheet' => $entity->spreadsheet()?->value(),
-            'status' => $entity->fileStatus()->value,
-            'process_config_id' => $entity->processConfig()->value(),
-            'first_row_headers' => $entity->isFirstRowHeaders(),
+            'fileName' => $entity->fileName()->value(),
+            'fileFormat' => $entity->fileFormat()->value,
+            'fileSize' => $entity->fileSize()->value(),
+            'storagePath' => $entity->storagePath()->value(),
+            'decimalSeparator' => $entity->decimalSeparator()->value,
+            'fileEncoding' => $entity->fileEncoding()->value,
+            'fileDelimiter' => $entity->fileDelimiter()->value,
+            'spreadsheet' => $entity->spreadsheet()->value(),
+            'processConfig' => $entity->processConfig()->value(),
+            'firstRowHeaders' => $entity->isFirstRowHeaders(),
+            'key' => $entity->key()->value(),
+            'position' => $entity->position()->value(),
+            'validRows' => $entity->validRows()->value(),
+            'duplicatedRows' => $entity->duplicatedRows()->value(),
+            'errorRows' => $entity->errorRows()->value(),
         ];
 
         $model = $model->fill($data);
@@ -35,17 +39,21 @@ final class ImportFileMapper
     {
         return ImportFileFactory::fromPrimitives(
             $model->_id,
-            $model->name,
-            $model->format,
-            $model->size,
-            $model->path,
-            $model->separator,
-            $model->encoding,
-            $model->delimiter,
+            $model->fileName,
+            $model->fileFormat,
+            $model->fileSize,
+            $model->storagePath,
+            $model->decimalSeparator,
+            $model->fileEncoding,
+            $model->fileDelimiter,
             $model->spreadsheet,
-            $model->status,
-            $model->process_config_id,
-            $model->first_row_headers,
+            $model->processConfig,
+            $model->firstRowHeaders,
+            $model->key,
+            $model->position,
+            $model->validRows,
+            $model->duplicatedRows,
+            $model->errorRows,
         );
     }
 }

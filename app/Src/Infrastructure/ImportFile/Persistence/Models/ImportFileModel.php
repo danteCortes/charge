@@ -14,16 +14,20 @@ class ImportFileModel extends Model
     protected $table = 'files';
 
     protected $fillable = [
-        'name',
-        'format',
-        'size',
-        'path',
-        'separator',
-        'encoding',
-        'delimiter',
+        'fileName',
+        'fileFormat',
+        'fileSize',
+        'storagePath',
+        'decimalSeparator',
+        'fileEncoding',
+        'fileDelimiter',
         'spreadsheet',
-        'status',
-        'process_config_id',
-        'first_row_headers',
+        'processConfig',
+        'firstRowHeaders',
+        'key',
+        'position',
+        'validRows',
+        'duplicatedRows',
+        'errorRows',
     ];
 }

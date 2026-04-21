@@ -4,18 +4,18 @@ namespace App\Src\Domain\ImportFile\ValueObjects;
 
 final class Spreadsheet
 {
-    private function __construct(private readonly int $value) {}
+    private function __construct(private readonly string $value) {}
 
-    public static function create(int $value): self
+    public static function create(string $value): self
     {
-        if ($value <= 0) {
-            throw new \InvalidArgumentException('La hoja de archivo debe ser mayor a cero.');
+        if (trim($value)) {
+            throw new \InvalidArgumentException('La hoja de archivo no debe estar vacío.');
         }
 
         return new self($value);
     }
 
-    public function value(): int
+    public function value(): string
     {
         return $this->value;
     }

@@ -32,15 +32,20 @@ class ImportFileController extends Controller
 
             $dto = ImportFileDTO::create(
                 $file->getClientOriginalname(),
-                $file->getClientOriginalExtension(),
+                strtoupper($file->getClientOriginalExtension()),
                 $file->getSize(),
                 $path,
+                null,
+                null,
+                null,
+                null,
                 $request->process_config,
+                true,
                 null,
                 null,
-                null,
-                null,
-                true
+                0,
+                0,
+                0,
             );
 
             $response[] = $this->storeImportFilesUseCase->execute($dto);

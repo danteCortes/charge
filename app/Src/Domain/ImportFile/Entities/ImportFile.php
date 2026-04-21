@@ -6,7 +6,6 @@ use App\Src\Domain\ImportFile\Enums\DecimalSeparator;
 use App\Src\Domain\ImportFile\Enums\FileDelimiter;
 use App\Src\Domain\ImportFile\Enums\FileEncoding;
 use App\Src\Domain\ImportFile\Enums\FileFormat;
-use App\Src\Domain\ImportFile\Enums\FileStatus;
 use App\Src\Domain\ImportFile\Enums\FirstRowHeaders;
 use App\Src\Domain\ImportFile\ValueObjects\FileId;
 use App\Src\Domain\ImportFile\ValueObjects\FileName;
@@ -14,6 +13,8 @@ use App\Src\Domain\ImportFile\ValueObjects\FileSize;
 use App\Src\Domain\ImportFile\ValueObjects\ProcessConfigId;
 use App\Src\Domain\ImportFile\ValueObjects\Spreadsheet;
 use App\Src\Domain\ImportFile\ValueObjects\StoragePath;
+use App\Src\Domain\ImportFile\ValueObjects\Key;
+use App\Src\Domain\ImportFile\ValueObjects\Position;
 
 final class ImportFile
 {
@@ -27,9 +28,13 @@ final class ImportFile
         private readonly ?FileEncoding $fileEncoding,
         private readonly ?FileDelimiter $fileDelimiter,
         private readonly ?Spreadsheet $spreadsheet,
-        private readonly FileStatus $fileStatus,
         private readonly ProcessConfigId $processConfig,
         private readonly FirstRowHeaders $firstRowHeaders,
+        private readonly ?Key $key,
+        private readonly ?Position $position,
+        private readonly ValidRows $validRows,
+        private readonly DuplicatedRows $duplicatedRows,
+        private readonly ErrorRows $errorRows,
     ) {}
 
     public static function create(
@@ -42,9 +47,13 @@ final class ImportFile
         ?FileEncoding $fileEncoding,
         ?FileDelimiter $fileDelimiter,
         ?Spreadsheet $spreadsheet,
-        FileStatus $fileStatus,
         ProcessConfigId $processConfig,
         FirstRowHeaders $firstRowHeaders,
+        ?Key $key,
+        ?Position $position,
+        ValidRows $validRows,
+        DuplicatedRows $duplicatedRows,
+        ErrorRows $errorRows,
     ): self {
         return new self(
             $id,
@@ -56,9 +65,13 @@ final class ImportFile
             $fileEncoding,
             $fileDelimiter,
             $spreadsheet,
-            $fileStatus,
             $processConfig,
             $firstRowHeaders,
+            $key,
+            $position,
+            $validRows,
+            $duplicatedRows,
+            $errorRows,
         );
     }
 
@@ -107,11 +120,6 @@ final class ImportFile
         return $this->spreadsheet;
     }
 
-    public function fileStatus(): FileStatus
-    {
-        return $this->fileStatus;
-    }
-
     public function processConfig(): ProcessConfigId
     {
         return $this->processConfig;
@@ -122,13 +130,23 @@ final class ImportFile
         return $this->firstRowHeaders === FirstRowHeaders::YES;
     }
 
-    public function process(): void
-    {
-        $this->fileStatus = FileStatus::PROCESS;
+    public function key(): ?Key {
+        return $this->key;
     }
 
-    public function ready(): void
-    {
-        $this->fileStatus = FileStatus::READY;
+    public function position(): ?Position {
+        return $this->position;
+    }
+    
+    public function validRows(): ValidRows {
+        return $this->validRows;
+    }
+
+    public function duplicatedRows(): DuplicatedRows {
+        return $this->duplicatedRows;
+    }
+
+    public function errorRows(): ErrorRows {
+        return $this->errorRows;
     }
 }

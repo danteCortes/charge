@@ -7,7 +7,6 @@ use App\Src\Domain\ImportFile\Enums\DecimalSeparator;
 use App\Src\Domain\ImportFile\Enums\FileDelimiter;
 use App\Src\Domain\ImportFile\Enums\FileEncoding;
 use App\Src\Domain\ImportFile\Enums\FileFormat;
-use App\Src\Domain\ImportFile\Enums\FileStatus;
 use App\Src\Domain\ImportFile\Enums\FirstRowHeaders;
 use App\Src\Domain\ImportFile\ValueObjects\FileId;
 use App\Src\Domain\ImportFile\ValueObjects\FileName;
@@ -15,6 +14,11 @@ use App\Src\Domain\ImportFile\ValueObjects\FileSize;
 use App\Src\Domain\ImportFile\ValueObjects\ProcessConfigId;
 use App\Src\Domain\ImportFile\ValueObjects\Spreadsheet;
 use App\Src\Domain\ImportFile\ValueObjects\StoragePath;
+use App\Src\Domain\ImportFile\ValueObjects\Key;
+use App\Src\Domain\ImportFile\ValueObjects\Position;
+use App\Src\Domain\ImportFile\ValueObjects\ValidRows;
+use App\Src\Domain\ImportFile\ValueObjects\DuplicatedRows;
+use App\Src\Domain\ImportFile\ValueObjects\ErrorRows;
 
 final class ImportFileFactory
 {
@@ -27,10 +31,14 @@ final class ImportFileFactory
         ?string $decimalSeparator,
         ?string $fileEncoding,
         ?string $fileDelimiter,
-        ?int $spreadsheet,
-        string $fileStatus,
+        ?string $spreadsheet,
         string $processConfig,
         bool $firstRowHeaders,
+        ?string $key,
+        ?int $position,
+        int $validRows,
+        int $duplicatedRows,
+        int $errorRows,
     ): ImportFile {
         return ImportFile::create(
             $id ? FileId::create($id) : null,
@@ -42,9 +50,13 @@ final class ImportFileFactory
             $fileEncoding ? FileEncoding::fromString($fileEncoding) : null,
             $fileDelimiter ? FileDelimiter::fromString($fileDelimiter) : null,
             $spreadsheet ? Spreadsheet::create($spreadsheet) : null,
-            FileStatus::fromString($fileStatus),
             ProcessConfigId::create($processConfig),
-            $firstRowHeaders ? FirstRowHeaders::YES : FirstRowHeaders::NO
+            $firstRowHeaders ? FirstRowHeaders::YES : FirstRowHeaders::NO,
+            $key ? Key::create($key) : null,
+            $position ? Position::create($position) : null,
+            ValidRows::create($validRows),
+            DuplicatedRows::create($duplicatedRows),
+            ErrorRows::create($errorRows),
         );
     }
 }
