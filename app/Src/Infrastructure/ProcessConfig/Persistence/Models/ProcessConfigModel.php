@@ -45,6 +45,6 @@ class ProcessConfigModel extends Model
 
     public function files(): HasMany
     {
-        return $this->hasMany(ImportFileModel::class, 'process_config_id', '_id');
+        return $this->hasMany(ImportFileModel::class, 'processConfig', '_id');
     }
 }

@@ -14,5 +14,5 @@ interface ImportFileRepository
 
     public function findById(FileId $id): ImportFile;
 
-    public function delete(FileId $id): void;
+    public function delete(FileId $id): ImportFile;
 }

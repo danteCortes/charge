@@ -93,7 +93,11 @@ class ImportFileController extends Controller
 
     public function delete(string $id): JsonResponse
     {
-        $this->deleteImportFileUseCase->execute($id);
+        $response = $this->deleteImportFileUseCase->execute($id);
+
+        if (Storage::disk('private')->exists($response->storagePath)) {
+            Storage::disk('private')->delete($response->storagePath);
+        }
 
         return response()->json('El archivo fué eliminado con éxito.');
     }
@@ -103,10 +107,10 @@ class ImportFileController extends Controller
         $model = ImportFileModel::find($id);
 
         // Obtener la ruta completa usando Storage
-        $fullPath = Storage::disk('private')->path($model->path);
+        $fullPath = Storage::disk('private')->path($model->storagePath);
 
         // Verificar si existe
-        if (! Storage::disk('private')->exists($model->path)) {
+        if (! Storage::disk('private')->exists($model->storagePath)) {
             return response()->json([
                 'error' => 'El archivo no existe',
             ], 404);

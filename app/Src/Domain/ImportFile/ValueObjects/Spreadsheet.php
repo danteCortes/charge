@@ -8,7 +8,7 @@ final class Spreadsheet
 
     public static function create(string $value): self
     {
-        if (trim($value)) {
+        if (trim($value) === '') {
             throw new \InvalidArgumentException('La hoja de archivo no debe estar vacío.');
         }
 

@@ -30,13 +30,17 @@ class GetFilesByProcessConfigUseCase
                 $file->fileFormat()->value,
                 $file->fileSize()->value(),
                 $file->storagePath()->value(),
-                $file->processConfig()->value(),
                 $file->decimalSeparator()?->value,
                 $file->fileEncoding()?->value,
                 $file->fileDelimiter()?->value,
                 $file->spreadsheet()?->value(),
+                $file->processConfig()->value(),
                 $file->isFirstRowHeaders(),
-                $file->fileStatus()->value,
+                $file->key()?->value(),
+                $file->position()?->value(),
+                $file->validRows()->value(),
+                $file->duplicatedRows()->value(),
+                $file->errorRows()->value(),
             );
         }
 

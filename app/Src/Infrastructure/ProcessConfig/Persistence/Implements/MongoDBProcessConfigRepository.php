@@ -22,7 +22,6 @@ class MongoDBProcessConfigRepository implements ProcessConfigRepository
     public function findById(ProcessConfigId $id): ?ProcessConfig
     {
         $model = ProcessConfigModel::find($id->value());
-        \Log::info([$model]);
 
         return $model ? ProcessConfigMapper::toEntity($model) : null;
     }
@@ -33,7 +32,6 @@ class MongoDBProcessConfigRepository implements ProcessConfigRepository
     public function files(ProcessConfigId $id): array
     {
         $model = ProcessConfigModel::find($id->value());
-
         if (! $model) {
             return [];
         }
