@@ -2,7 +2,9 @@
 
 namespace App\Src\Infrastructure\ImportFile\Persistence\Models;
 
+use App\Src\Infrastructure\ColumnAssignment\Persistence\Models\ColumnAssignmentModel;
 use MongoDB\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Relations\HasMany;
 
 class ImportFileModel extends Model
 {
@@ -27,4 +29,9 @@ class ImportFileModel extends Model
         'duplicatedRows',
         'errorRows',
     ];
+
+    public function columnAssignmentsModel(): HasMany
+    {
+        return $this->hasMany(ColumnAssignmentModel::class, 'import_file_id', '_id');
+    }
 }

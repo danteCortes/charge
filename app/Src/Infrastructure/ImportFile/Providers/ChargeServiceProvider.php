@@ -4,6 +4,7 @@ namespace App\Src\Infrastructure\ImportFile\Providers;
 
 use App\Src\Application\ImportFile\Services\FilePreviewGeneratorResolver;
 use App\Src\Application\ImportFile\UseCases\DeleteImportFileUseCase;
+use App\Src\Application\ImportFile\UseCases\GetColumnAssignmentByImportFileUseCase;
 use App\Src\Domain\ImportFile\Repositories\ImportFileRepository;
 use App\Src\Infrastructure\ImportFile\Persistence\Implements\CsvPreviewGenerator;
 use App\Src\Infrastructure\ImportFile\Persistence\Implements\XlsxPreviewGenerator;
@@ -25,6 +26,9 @@ class ChargeServiceProvider extends ServiceProvider
         });
         $this->app->bind(DeleteImportFileUseCase::class, function ($app) {
             return DeleteImportFileUseCase::create($app->make(ImportFileRepository::class));
+        });
+        $this->app->bind(GetColumnAssignmentByImportFileUseCase::class, function ($app) {
+            return GetColumnAssignmentByImportFileUseCase::create($app->make(ImportFileRepository::class));
         });
     }
 }

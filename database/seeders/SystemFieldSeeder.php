@@ -12,19 +12,19 @@ class SystemFieldSeeder extends Seeder
      */
     public function run(): void
     {
-        SystemFieldModel::firstOrCreate(['name' => 'RUT', 'description' => 'rut', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Nombre Completo', 'description' => 'fullname', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Dirección', 'description' => 'address', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Teléfono Principal', 'description' => 'main_phone', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Teléfono Secundario', 'description' => 'second_phone', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Email', 'description' => 'email', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Monto Deuda Original', 'description' => 'original_mount', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Monto Deuda Actual', 'description' => 'current_amount', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Fecha de Vencimiento', 'description' => 'expiration_date', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Número de Documento', 'description' => 'document_number', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Producto', 'description' => 'product', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Sucursal Origen', 'description' => 'origin_branch', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Días de Mora', 'description' => 'delay_days', 'required' => true]);
-        SystemFieldModel::firstOrCreate(['name' => 'Tramo de Mora', 'description' => 'delay_stretch', 'required' => true]);
+        SystemFieldModel::firstOrCreate(['name' => 'RUT', 'column' => 'rut', 'required' => true, 'position' => 1]);
+        SystemFieldModel::firstOrCreate(['name' => 'Nombre Completo', 'column' => 'fullname', 'required' => true, 'position' => 2]);
+        SystemFieldModel::firstOrCreate(['name' => 'Dirección', 'column' => 'address', 'required' => true, 'position' => 3]);
+        SystemFieldModel::firstOrCreate(['name' => 'Teléfono Principal', 'column' => 'main_phone', 'required' => true, 'position' => 4]);
+        SystemFieldModel::firstOrCreate(['name' => 'Teléfono Secundario', 'column' => 'second_phone', 'required' => true, 'position' => 5]);
+        SystemFieldModel::firstOrCreate(['name' => 'Email', 'column' => 'email', 'required' => true, 'position' => 6]);
+        SystemFieldModel::firstOrCreate(['name' => 'Monto Deuda Original', 'column' => 'original_mount', 'required' => true, 'position' => 7]);
+        SystemFieldModel::firstOrCreate(['name' => 'Monto Deuda Actual', 'column' => 'current_amount', 'required' => true, 'position' => 8]);
+        SystemFieldModel::firstOrCreate(['name' => 'Fecha de Vencimiento', 'column' => 'expiration_date', 'required' => true, 'position' => 9]);
+        SystemFieldModel::firstOrCreate(['name' => 'Número de Documento', 'column' => 'document_number', 'required' => true, 'position' => 10]);
+        SystemFieldModel::firstOrCreate(['name' => 'Producto', 'column' => 'product', 'required' => true, 'position' => 11]);
+        SystemFieldModel::firstOrCreate(['name' => 'Sucursal Origen', 'column' => 'origin_branch', 'required' => true, 'position' => 12]);
+        SystemFieldModel::firstOrCreate(['name' => 'Días de Mora', 'column' => 'delay_days', 'required' => true, 'position' => 13]);
+        SystemFieldModel::firstOrCreate(['name' => 'Tramo de Mora', 'column' => 'delay_stretch', 'required' => true, 'position' => 14]);
     }
 }

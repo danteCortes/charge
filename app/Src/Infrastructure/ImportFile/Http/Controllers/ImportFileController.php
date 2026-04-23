@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Src\Application\ImportFile\DTOs\ImportFileDTO;
 use App\Src\Application\ImportFile\UseCases\DeleteImportFileUseCase;
 use App\Src\Application\ImportFile\UseCases\GenerateFilePreviewUseCase;
+use App\Src\Application\ImportFile\UseCases\GetColumnAssignmentByImportFileUseCase;
 use App\Src\Application\ImportFile\UseCases\StoreImportFilesUseCase;
 use App\Src\Application\ImportFile\UseCases\UpdateImportFileUseCase;
 use App\Src\Infrastructure\ImportFile\Http\Requests\StoreImportFileRequest;
@@ -22,6 +23,7 @@ class ImportFileController extends Controller
         private UpdateImportFileUseCase $updateImportFilesUseCase,
         private GenerateFilePreviewUseCase $generateFilePreviewUseCase,
         private DeleteImportFileUseCase $deleteImportFileUseCase,
+        private GetColumnAssignmentByImportFileUseCase $getColumnAssignmentByImportFileUseCase,
     ) {}
 
     public function store(StoreImportFileRequest $request): JsonResponse
@@ -121,5 +123,12 @@ class ImportFileController extends Controller
         $sheetNames = $spreadsheet->getSheetNames();
 
         return response()->json($sheetNames);
+    }
+
+    public function columnAssignments(string $id): JsonResponse
+    {
+        $response = $this->getColumnAssignmentByImportFileUseCase->execute($id);
+
+        return response()->json($response);
     }
 }

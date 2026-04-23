@@ -8,17 +8,9 @@
         "framework"
     ],
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "C:\\Users\\devcortes\\Herd\\cleanArchitecture",
-            "options": {
-                "symlink": true
-            }
-        }
-    ],
     "require": {
         "php": "^8.3",
+        "devcortes/laravel-clean-architecture": "^1.0",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "mongodb/laravel-mongodb": "^5.7",
@@ -31,8 +23,7 @@
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
         "pestphp/pest": "^4.6",
-        "pestphp/pest-plugin-laravel": "^4.1",
-        "devcortes/laravel-clean-architecture": "*"
+        "pestphp/pest-plugin-laravel": "^4.1"
     },
     "autoload": {
         "psr-4": {
@@ -99,6 +90,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
