@@ -13,6 +13,7 @@ use App\Src\Infrastructure\ImportFile\Http\Requests\StoreImportFileRequest;
 use App\Src\Infrastructure\ImportFile\Http\Requests\UpdateImportFileRequest;
 use App\Src\Infrastructure\ImportFile\Persistence\Models\ImportFileModel;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
@@ -130,5 +131,91 @@ class ImportFileController extends Controller
         $response = $this->getColumnAssignmentByImportFileUseCase->execute($id);
 
         return response()->json($response);
+    }
+
+    // Recibe cada fragmento y lo guarda en disco temporal
+    public function receiveChunk(Request $request)
+    {
+        $uploadId = $request->upload_id;
+        $index = (int) $request->chunk_index;
+
+        $request->file('chunk')->storeAs(
+            "chunks/{$uploadId}",
+            "part_{$index}"
+        );
+
+        return response()->json(['ok' => true]);
+    }
+
+    // Ensambla los chunks, sube a S3 y dispara el Job
+    public function completeUpload(Request $request)
+    {
+        $uploadId = $request->upload_id;
+        $filename = $request->filename;
+
+        // 1. Ensambla
+        $finalPath = $this->assembleChunks($uploadId, $filename);
+
+        // 2. Tamaño real del archivo ensamblado
+        $fileSize = filesize($finalPath);
+        $ext = strtoupper(pathinfo($filename, PATHINFO_EXTENSION));
+
+        // 3. Sube a S3 (en producción) o queda en local (desarrollo)
+        $storagePath = "imports/{$uploadId}/{$filename}";
+        // Storage::disk('s3')->put($storagePath, fopen($finalPath, 'r'));
+
+        // 4. Guarda metadatos con tu DTO
+        $dto = ImportFileDTO::create(
+            $filename,
+            $ext,
+            $fileSize,        // ✅ tamaño real post-ensamblado
+            $storagePath,
+            null,
+            null,
+            null,
+            null,
+            $request->process_config,
+            true,
+            null,
+            null,
+            0,
+            0,
+            0,
+        );
+
+        $response = $this->storeImportFilesUseCase->execute($dto);
+
+        // 5. Limpieza
+        Storage::deleteDirectory("private/chunks/{$uploadId}");
+
+        return response()->json(['data' => $response]);
+    }
+
+    private function assembleChunks(string $uploadId, string $filename): string
+    {
+        $chunkDir = storage_path("app/private/chunks/{$uploadId}");
+        $finalDir = storage_path("app/private/imports/{$uploadId}");
+        $finalPath = "{$finalDir}/{$filename}";
+
+        if (! is_dir($finalDir)) {
+            mkdir($finalDir, 0755, true);
+        }
+
+        $output = fopen($finalPath, 'wb');
+        $files = glob("{$chunkDir}/part_*");
+
+        usort($files, fn ($a, $b) => (int) explode('_', basename($a))[1] <=>
+            (int) explode('_', basename($b))[1]
+        );
+
+        foreach ($files as $chunk) {
+            $in = fopen($chunk, 'rb');
+            stream_copy_to_stream($in, $output);
+            fclose($in);
+        }
+
+        fclose($output);
+
+        return $finalPath;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Src\Domain\ImportFile\ValueObjects;
 
 final class FileSize
 {
-    private const MAX_BYTES = 500 * 1024 * 1024;
+    private const MAX_BYTES = 6 * 1024 * 1024 * 1024;
 
     private function __construct(private readonly int $value) {}
 

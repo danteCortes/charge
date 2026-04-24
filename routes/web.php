@@ -19,6 +19,8 @@ Route::get('/import-file/{id}/preview', [ImportFileController::class, 'preview']
 Route::delete('/import-file/{id}', [ImportFileController::class, 'delete']);
 Route::get('/import-file/{id}/spreadsheets', [ImportFileController::class, 'spreadsheets']);
 Route::get('/import-file/{id}/column-assignments', [ImportFileController::class, 'columnAssignments']);
+Route::post('/import-file/chunk', [ImportFileController::class, 'receiveChunk']);
+Route::post('/import-file/complete', [ImportFileController::class, 'completeUpload']);
 
 Route::post('/process-config', [ProcessConfigController::class, 'store']);
 Route::get('/process-config/{id}', [ProcessConfigController::class, 'show']);
