@@ -28,6 +28,7 @@ class SaveProcessConfigUseCase
             $dto->processType,
             $dto->layout,
             $dto->responsible,
+            $dto->templateName,
         );
 
         $entity = $this->repository->save($entity);
@@ -38,7 +39,8 @@ class SaveProcessConfigUseCase
             $entity->loadType()?->value(),
             $entity->processType()?->value,
             $entity->layout()?->value(),
-            $entity->responsible()?->value()
+            $entity->responsible()?->value(),
+            $entity->templateName()?->value(),
         );
     }
 }

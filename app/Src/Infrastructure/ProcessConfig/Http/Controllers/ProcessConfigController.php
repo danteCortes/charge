@@ -15,7 +15,7 @@ class ProcessConfigController
 
     public function store(CreateProcessConfigRequest $request): JsonResponse
     {
-        return $this->service->store($request);
+        return $this->service->store($request->toDTO());
     }
 
     public function show(string $id): JsonResponse

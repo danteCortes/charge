@@ -6,10 +6,12 @@ use InvalidArgumentException;
 
 final class ProcessConfigId
 {
-    private function __construct(private readonly string $value){}
+    private function __construct(private readonly string $value) {}
 
-    public static function create(string $value): self {
+    public static function create(string $value): self
+    {
         self::validate($value);
+
         return new self($value);
     }
 
@@ -33,7 +35,7 @@ final class ProcessConfigId
     public function __toString(): string
     {
         return '{
-            "process_config_id": "' . $this->value . '"
+            "process_config_id": "'.$this->value.'"
         }';
     }
 }

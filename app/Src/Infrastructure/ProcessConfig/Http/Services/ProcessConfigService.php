@@ -7,7 +7,6 @@ use App\Src\Application\ProcessConfig\UseCases\GetFilesByProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\SaveProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\ShowProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\UpdateProcessConfigUseCase;
-use App\Src\Infrastructure\ProcessConfig\Http\Requests\CreateProcessConfigRequest;
 use App\Src\Infrastructure\ProcessConfig\Http\Requests\UpdateProcessConfigRequest;
 use Illuminate\Http\JsonResponse;
 
@@ -20,17 +19,9 @@ class ProcessConfigService
         private readonly GetFilesByProcessConfigUseCase $getFilesUseCase,
     ) {}
 
-    public function store(CreateProcessConfigRequest $request): JsonResponse
+    public function store(ProcessConfigDTO $dto): JsonResponse
     {
-        $response = $this->saveUseCase->execute(
-            ProcessConfigDTO::create(
-                $request->input('company', ''),
-                $request->input('load_type', ''),
-                $request->input('process_type', ''),
-                $request->input('layout', ''),
-                $request->input('responsible', ''),
-            )
-        );
+        $response = $this->saveUseCase->execute($dto);
 
         return response()->json($response, 201);
     }
@@ -60,7 +51,7 @@ class ProcessConfigService
             $id
         );
 
-        return response()->json($response, 201);
+        return response()->json($response);
     }
 
     public function files(string $id): JsonResponse

@@ -6,10 +6,12 @@ use InvalidArgumentException;
 
 final class Port
 {
-    private function __construct(private readonly int $value){}
+    private function __construct(private readonly int $value) {}
 
-    public static function create(int $value): self {
+    public static function create(int $value): self
+    {
         self::validate($value);
+
         return new self($value);
     }
 
@@ -33,7 +35,7 @@ final class Port
     public function __toString(): string
     {
         return '{
-            "port": "' . $this->value . '"
+            "port": "'.$this->value.'"
         }';
     }
 }

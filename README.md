@@ -13,7 +13,7 @@ Laravel 13
 
 Redis (cola)
     ↓
-Laravel Queue Worker
+Queue Worker
     ↓ HTTP
 FastAPI (Python)
     ├── pandas lee cada archivo

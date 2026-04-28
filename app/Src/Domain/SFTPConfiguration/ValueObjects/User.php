@@ -6,10 +6,12 @@ use InvalidArgumentException;
 
 final class User
 {
-    private function __construct(private readonly string $value){}
+    private function __construct(private readonly string $value) {}
 
-    public static function create(string $value): self {
+    public static function create(string $value): self
+    {
         self::validate($value);
+
         return new self($value);
     }
 
@@ -33,7 +35,7 @@ final class User
     public function __toString(): string
     {
         return '{
-            "user": "' . $this->value . '"
+            "user": "'.$this->value.'"
         }';
     }
 }

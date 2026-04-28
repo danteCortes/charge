@@ -2,10 +2,10 @@
 
 namespace App\Src\Application\SFTPConfiguration\UseCases;
 
-use App\Src\Domain\SFTPConfiguration\Factories\SFTPConfigurationFactory;
-use App\Src\Domain\SFTPConfiguration\Repositories\SFTPConfigurationRepository;
 use App\Src\Application\SFTPConfiguration\DTOs\SFTPConfigurationDTO;
 use App\Src\Application\SFTPConfiguration\Responses\SFTPConfigurationResponse;
+use App\Src\Domain\SFTPConfiguration\Factories\SFTPConfigurationFactory;
+use App\Src\Domain\SFTPConfiguration\Repositories\SFTPConfigurationRepository;
 
 class UpdateSFTPConfigurationUseCase
 {

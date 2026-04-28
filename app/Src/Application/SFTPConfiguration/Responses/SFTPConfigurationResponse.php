@@ -12,7 +12,7 @@ final class SFTPConfigurationResponse
         public readonly string $user,
         public readonly string $password,
         public readonly string $directory_path,
-    ){}
+    ) {}
 
     public static function create(
         string $id,
@@ -22,8 +22,7 @@ final class SFTPConfigurationResponse
         string $user,
         string $password,
         string $directory_path,
-    ): self
-    {
+    ): self {
         return new self(
             $id,
             $process_config_id,

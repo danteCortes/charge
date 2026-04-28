@@ -2,13 +2,13 @@
 
 namespace App\Src\Domain\SFTPConfiguration\Entities;
 
-use App\Src\Domain\SFTPConfiguration\ValueObjects\SFTPConfigurationId;
-use App\Src\Domain\SFTPConfiguration\ValueObjects\ProcessConfigId;
-use App\Src\Domain\SFTPConfiguration\ValueObjects\Hostname;
-use App\Src\Domain\SFTPConfiguration\ValueObjects\Port;
-use App\Src\Domain\SFTPConfiguration\ValueObjects\User;
-use App\Src\Domain\SFTPConfiguration\ValueObjects\Password;
 use App\Src\Domain\SFTPConfiguration\ValueObjects\DirectoryPath;
+use App\Src\Domain\SFTPConfiguration\ValueObjects\Hostname;
+use App\Src\Domain\SFTPConfiguration\ValueObjects\Password;
+use App\Src\Domain\SFTPConfiguration\ValueObjects\Port;
+use App\Src\Domain\SFTPConfiguration\ValueObjects\ProcessConfigId;
+use App\Src\Domain\SFTPConfiguration\ValueObjects\SFTPConfigurationId;
+use App\Src\Domain\SFTPConfiguration\ValueObjects\User;
 
 class SFTPConfiguration
 {
@@ -46,28 +46,34 @@ class SFTPConfiguration
     {
         return $this->id;
     }
-    
-    public function processConfigId(): ProcessConfigId {
+
+    public function processConfigId(): ProcessConfigId
+    {
         return $this->processConfigId;
     }
 
-    public function hostname(): Hostname {
+    public function hostname(): Hostname
+    {
         return $this->hostname;
     }
 
-    public function port(): Port {
+    public function port(): Port
+    {
         return $this->port;
     }
 
-    public function user(): User {
+    public function user(): User
+    {
         return $this->user;
     }
 
-    public function password(): Password {
+    public function password(): Password
+    {
         return $this->password;
     }
 
-    public function directoryPath(): DirectoryPath {
+    public function directoryPath(): DirectoryPath
+    {
         return $this->directoryPath;
     }
 }

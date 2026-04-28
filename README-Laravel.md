@@ -7,34 +7,62 @@
 ## 🗂️ Estructura de Archivos
 
 ```
-src/
-├── app/
-│   ├── Modules/
+app/
+├── Src/
+│   ├── Application/
 │   │   ├── User/
-│   │   │   ├── Domain/                 ← Entidades, Value Objects, Interfaces (Puertos)
-│   │   │   │   ├── Entities/
-│   │   │   │   ├── ValueObjects/
-│   │   │   │   └── Contracts/          ← UserRepositoryInterface, UserServiceInterface
-│   │   │   ├── Application/            ← Casos de uso, DTOs, Factories
-│   │   │   │   ├── UseCases/
-│   │   │   │   │   ├── CreateUserUseCase.php
-│   │   │   │   │   └── FindUserUseCase.php
-│   │   │   │   ├── DTOs/
-│   │   │   │   │   └── UserDTO.php
-│   │   │   │   └── Factories/
-│   │   │   │       └── UserFactory.php
-│   │   │   ├── Infrastructure/         ← Adaptadores: Eloquent, Repositorios concretos
-│   │   │   │   ├── Repositories/
-│   │   │   │   │   └── UserMongoRepository.php
-│   │   │   │   └── Models/
-│   │   │   │       └── UserModel.php
-│   │   │   └── Http/                   ← Controladores, Requests, Resources
-│   │   │       ├── Controllers/
-│   │   │       │   └── UserController.php
-│   │   │       ├── Requests/
-│   │   │       │   └── CreateUserRequest.php
-│   │   │       └── Resources/
-│   │   │           └── UserResource.php
+|   |   |   ├── DTOs/
+|   |   |   |   └── UserDTO.php
+|   |   |   ├── Responses/
+|   |   |   |   └── UserResponse.php
+│   │   │   ├── UseCases/
+│   │   │   │   ├── CreateUserUseCase.php
+│   │   │   │   ├── UpdateUserUseCase.php
+│   │   │   │   ├── DeleteUserUseCase.php
+│   │   │   │   ├── ListUsersUseCase.php
+│   │   │   │   └── FindUserUseCase.php
+│   │   ├── Auth/
+│   │   │   └── ... (misma estructura)
+│   │   └── Product/
+│   │       └── ... (misma estructura)
+│   ├── Domain/
+│   │   ├── User/
+|   |   |   ├── Entities/
+|   |   |   |   └── User.php
+|   |   |   ├── Enums/
+|   |   |   |   ├── UserStatus.php
+|   |   |   |   └── ...
+│   │   │   ├── Factories/
+│   │   │   │   └── UserFactory.php
+│   │   │   ├── Repositories/
+│   │   │   │   └── UserRepository.php
+│   │   │   ├── ValueObjects/
+│   │   │   │   ├── UserId.php
+│   │   │   │   ├── Name.php
+│   │   │   │   └── ...
+│   │   ├── Auth/
+│   │   │   └── ... (misma estructura)
+│   │   └── Product/
+│   │       └── ... (misma estructura)
+│   ├── Infrastructure/
+│   │   ├── User/
+|   |   |   ├── Http/
+|   |   |   |   ├── Controllers/
+|   |   |   |   |   └── UserController.php
+|   |   |   |   ├── Requests/
+|   |   |   |   |   ├── StoreUserRequest.php
+|   |   |   |   |   └── UpdateUserRequest.php
+|   |   |   |   ├── Services/
+|   |   |   |   |   └── UserService.php
+|   |   |   ├── Persistence/
+|   |   |   |   ├── Implements/
+|   |   |   |   |   └── EloquentUserRepository.php
+|   |   |   |   ├── Mappers/
+|   |   |   |   |   └── UserMapper.php
+|   |   |   |   ├── Models/
+|   |   |   |   |   └── UserModel.php
+|   |   |   ├── Providers/
+|   |   |   |   └── UserServiceProvider.php
 │   │   ├── Auth/
 │   │   │   └── ... (misma estructura)
 │   │   └── Product/
@@ -223,6 +251,7 @@ cp .env.example .env
 php artisan key:generate
 
 # Configurar MONGODB_URI en .env
+php artisan db:seed
 php artisan serve
 ```
 

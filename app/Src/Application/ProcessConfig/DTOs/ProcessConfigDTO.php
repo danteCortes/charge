@@ -10,6 +10,7 @@ final class ProcessConfigDTO
         public readonly ?string $processType,
         public readonly ?string $layout,
         public readonly ?string $responsible,
+        public readonly ?string $templateName,
     ) {}
 
     public static function create(
@@ -18,6 +19,7 @@ final class ProcessConfigDTO
         ?string $processType,
         ?string $layout,
         ?string $responsible,
+        ?string $templateName,
     ): self {
         return new self(
             $company,
@@ -25,6 +27,7 @@ final class ProcessConfigDTO
             $processType,
             $layout,
             $responsible,
+            $templateName,
         );
     }
 }

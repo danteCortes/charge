@@ -13,7 +13,9 @@
         "devcortes/laravel-clean-architecture": "^1.0",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
+        "laraveles/spanish": "^1.5",
         "mongodb/laravel-mongodb": "^5.7",
+        "openspout/openspout": "^5.6",
         "phpoffice/phpspreadsheet": "^5.6"
     },
     "require-dev": {

@@ -15,9 +15,10 @@ final class ProcessConfigMapper
         $data = [
             'company_id' => $entity->company()?->value(),
             'load_type_id' => $entity->loadType()?->value(),
+            'process_type' => $entity->processType()?->value,
             'layout_id' => $entity->layout()?->value(),
             'responsible' => $entity->responsible()?->value(),
-            'process_type' => $entity->processType()?->value,
+            'template_name' => $entity->templateName()?->value(),
         ];
 
         $model = $model->fill($data);
@@ -34,6 +35,7 @@ final class ProcessConfigMapper
             $model->process_type,
             $model->layout_id,
             $model->responsible,
+            $model->template_name,
         );
     }
 }

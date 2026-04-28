@@ -11,6 +11,7 @@ final class ProcessConfigResponse
         public readonly ?string $processType,
         public readonly ?string $layout,
         public readonly ?string $responsible,
+        public readonly ?string $templateName,
     ) {}
 
     public static function create(
@@ -20,6 +21,7 @@ final class ProcessConfigResponse
         ?string $processType,
         ?string $layout,
         ?string $responsible,
+        ?string $templateName,
     ): self {
         return new self(
             $id,
@@ -28,6 +30,7 @@ final class ProcessConfigResponse
             $processType,
             $layout,
             $responsible,
+            $templateName,
         );
     }
 }

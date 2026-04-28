@@ -9,6 +9,7 @@ use App\Src\Domain\ProcessConfig\ValueObjects\LayoutId;
 use App\Src\Domain\ProcessConfig\ValueObjects\LoadTypeId;
 use App\Src\Domain\ProcessConfig\ValueObjects\ProcessConfigId;
 use App\Src\Domain\ProcessConfig\ValueObjects\Responsible;
+use App\Src\Domain\ProcessConfig\ValueObjects\TemplateName;
 
 class ProcessConfigFactory
 {
@@ -19,6 +20,7 @@ class ProcessConfigFactory
         ?string $processType,
         ?string $layout,
         ?string $responsible,
+        ?string $templateName,
     ): ProcessConfig {
         return ProcessConfig::create(
             $id ? ProcessConfigId::create($id) : null,
@@ -27,6 +29,7 @@ class ProcessConfigFactory
             $processType ? ProcessType::fromString($processType) : null,
             $layout ? LayoutId::create($layout) : null,
             $responsible ? Responsible::create($responsible) : null,
+            $templateName ? TemplateName::create($templateName) : null,
         );
     }
 }

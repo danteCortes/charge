@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\ValidateFileJob;
 use App\Src\Infrastructure\ColumnAssignment\Http\Controllers\ColumnAssignmentController;
 use App\Src\Infrastructure\Company\Http\Controllers\CompanyController;
 use App\Src\Infrastructure\ImportFile\Http\Controllers\ImportFileController;
@@ -34,3 +35,7 @@ Route::get('/system-field', [SystemFieldController::class, 'index']);
 
 Route::post('/column-assignment', [ColumnAssignmentController::class, 'store']);
 Route::put('/column-assignment/{id}', [ColumnAssignmentController::class, 'update']);
+
+Route::get('/job', function () {
+    ValidateFileJob::dispatch('69eaf59ff8eb1509a6048872');
+});

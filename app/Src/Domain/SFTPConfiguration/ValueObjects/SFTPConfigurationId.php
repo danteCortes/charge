@@ -6,10 +6,12 @@ use InvalidArgumentException;
 
 final class SFTPConfigurationId
 {
-    private function __construct(private readonly string $value){}
+    private function __construct(private readonly string $value) {}
 
-    public static function create(string $value): self {
+    public static function create(string $value): self
+    {
         self::validate($value);
+
         return new self($value);
     }
 
@@ -33,7 +35,7 @@ final class SFTPConfigurationId
     public function __toString(): string
     {
         return '{
-            "sftp_configuratio_id": "' . $this->value . '"
+            "sftp_configuratio_id": "'.$this->value.'"
         }';
     }
 }

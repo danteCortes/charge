@@ -11,7 +11,7 @@ final class SFTPConfigurationDTO
         public readonly string $user,
         public readonly string $password,
         public readonly string $directory_path,
-    ){}
+    ) {}
 
     public static function create(
         string $process_config_id,
@@ -20,8 +20,7 @@ final class SFTPConfigurationDTO
         string $user,
         string $password,
         string $directory_path,
-    ): self
-    {
+    ): self {
         return new self(
             $process_config_id,
             $hostname,

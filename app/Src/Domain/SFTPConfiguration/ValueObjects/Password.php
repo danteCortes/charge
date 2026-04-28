@@ -6,10 +6,12 @@ use InvalidArgumentException;
 
 final class Password
 {
-    private function __construct(private readonly string $value){}
+    private function __construct(private readonly string $value) {}
 
-    public static function create(string $value): self {
+    public static function create(string $value): self
+    {
         self::validate($value);
+
         return new self($value);
     }
 
@@ -34,7 +36,7 @@ final class Password
     {
         return '{
             "password
-            ": "' . $this->value . '"
+            ": "'.$this->value.'"
         }';
     }
 }

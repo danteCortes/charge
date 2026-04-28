@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Src\Domain\SFTPConfiguration\ValueObjects;
+namespace App\Src\Domain\ProcessConfig\ValueObjects;
 
 use InvalidArgumentException;
 
-final class Hostname
+final class TemplateName
 {
     private function __construct(private readonly string $value) {}
 
@@ -18,7 +18,7 @@ final class Hostname
     private static function validate(string $value): void
     {
         if (empty($value)) {
-            throw new InvalidArgumentException('El servidor no debe estar vacío.');
+            throw new InvalidArgumentException('TemplateName cannot be empty');
         }
     }
 
@@ -27,7 +27,7 @@ final class Hostname
         return $this->value;
     }
 
-    public function equals(Hostname $other): bool
+    public function equals(TemplateName $other): bool
     {
         return $this->value === $other->value;
     }
@@ -35,7 +35,7 @@ final class Hostname
     public function __toString(): string
     {
         return '{
-            "hostname": "'.$this->value.'"
+            "value": "'.$this->value.'"
         }';
     }
 }

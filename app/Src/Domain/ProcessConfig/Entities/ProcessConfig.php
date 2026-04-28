@@ -8,6 +8,7 @@ use App\Src\Domain\ProcessConfig\ValueObjects\LayoutId;
 use App\Src\Domain\ProcessConfig\ValueObjects\LoadTypeId;
 use App\Src\Domain\ProcessConfig\ValueObjects\ProcessConfigId;
 use App\Src\Domain\ProcessConfig\ValueObjects\Responsible;
+use App\Src\Domain\ProcessConfig\ValueObjects\TemplateName;
 
 class ProcessConfig
 {
@@ -18,6 +19,7 @@ class ProcessConfig
         private readonly ?ProcessType $processType,
         private readonly ?LayoutId $layout,
         private readonly ?Responsible $responsible,
+        private readonly ?TemplateName $templateName,
     ) {}
 
     public static function create(
@@ -27,6 +29,7 @@ class ProcessConfig
         ?ProcessType $processType,
         ?LayoutId $layout,
         ?Responsible $responsible,
+        ?TemplateName $templateName,
     ): self {
         return new self(
             $id,
@@ -35,6 +38,7 @@ class ProcessConfig
             $processType,
             $layout,
             $responsible,
+            $templateName,
         );
     }
 
@@ -66,5 +70,10 @@ class ProcessConfig
     public function responsible(): ?Responsible
     {
         return $this->responsible;
+    }
+
+    public function templateName(): ?TemplateName
+    {
+        return $this->templateName;
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Src\Infrastructure\SFTPConfiguration\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Src\Infrastructure\SFTPConfiguration\Http\Requests\CreateSFTPConfigurationRequest;
 use App\Src\Infrastructure\SFTPConfiguration\Http\Requests\UpdateSFTPConfigurationRequest;
 use App\Src\Infrastructure\SFTPConfiguration\Http\Services\SFTPConfigurationService;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class SFTPConfigurationController
 {

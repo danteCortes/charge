@@ -19,9 +19,10 @@ class ProcessConfigModel extends Model
     protected $fillable = [
         'company_id',
         'load_type_id',
+        'process_type',
         'layout_id',
         'responsible',
-        'process_type',
+        'template_name',
     ];
 
     protected $casts = [
