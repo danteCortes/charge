@@ -14,15 +14,17 @@ class ProcessConfigModel extends Model
 {
     protected $connection = 'mongodb';
 
-    protected $table = 'process_configurations';
+    protected $table = 'processes';
 
     protected $fillable = [
         'company_id',
         'load_type_id',
-        'process_type',
         'layout_id',
         'responsible',
         'template_name',
+        'start_date',
+        'records',
+        'status',
     ];
 
     protected $casts = [

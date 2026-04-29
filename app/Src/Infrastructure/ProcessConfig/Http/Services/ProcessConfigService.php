@@ -7,7 +7,6 @@ use App\Src\Application\ProcessConfig\UseCases\GetFilesByProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\SaveProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\ShowProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\UpdateProcessConfigUseCase;
-use App\Src\Infrastructure\ProcessConfig\Http\Requests\UpdateProcessConfigRequest;
 use Illuminate\Http\JsonResponse;
 
 class ProcessConfigService
@@ -33,23 +32,14 @@ class ProcessConfigService
         return response()->json($response);
     }
 
-    public function update(UpdateProcessConfigRequest $request, string $id): JsonResponse
+    public function update(ProcessConfigDTO $dto, string $id): JsonResponse
     {
         $entity = $this->showUseCase->execute($id);
         if (! $entity) {
             abort(404);
         }
 
-        $response = $this->updateUseCase->execute(
-            ProcessConfigDTO::create(
-                $request->input('company'),
-                $request->input('load_type'),
-                $request->input('process_type'),
-                $request->input('layout'),
-                $request->input('responsible'),
-            ),
-            $id
-        );
+        $response = $this->updateUseCase->execute($dto, $id);
 
         return response()->json($response);
     }

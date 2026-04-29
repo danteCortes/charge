@@ -33,7 +33,8 @@ class ShowProcessConfigUseCase
             $entity->loadType()?->value(),
             $entity->processType()?->value,
             $entity->layout()?->value(),
-            $entity->responsible()?->value()
+            $entity->responsible()?->value(),
+            $entity->templateName()?->value()
         );
     }
 }

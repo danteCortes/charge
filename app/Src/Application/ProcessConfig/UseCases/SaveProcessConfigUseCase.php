@@ -21,26 +21,29 @@ class SaveProcessConfigUseCase
     public function execute(
         ProcessConfigDTO $dto
     ): ProcessConfigResponse {
-        $entity = ProcessConfigFactory::fromPrimitives(
+
+        $entity = $this->repository->save(ProcessConfigFactory::fromPrimitives(
             null,
             $dto->company,
             $dto->loadType,
-            $dto->processType,
             $dto->layout,
             $dto->responsible,
             $dto->templateName,
-        );
-
-        $entity = $this->repository->save($entity);
+            null,
+            0,
+            'Pendiente',
+        ));
 
         return ProcessConfigResponse::create(
             $entity->id()?->value(),
             $entity->company()?->value(),
             $entity->loadType()?->value(),
-            $entity->processType()?->value,
             $entity->layout()?->value(),
             $entity->responsible()?->value(),
             $entity->templateName()?->value(),
+            $entity->startdate()?->value(),
+            $entity->records()->value(),
+            $entity->status()?->value,
         );
     }
 }

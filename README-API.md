@@ -27,7 +27,6 @@ Es un método post que registra un nuevo proceso en la base de datos:
 {
     "company": string | null;
     "load_type": string | null;
-    "process_type": string | null;
     "layout": string | null;
     "responsible": string | null;
     "template_name": string | null;
@@ -36,7 +35,6 @@ Es un método post que registra un nuevo proceso en la base de datos:
 
 * __company:__ id de un registro en la tabla companies.
 * __load_type:__ id de un registro en la tabla load_types.
-* __process_type:__ uno de dos valores: `Flujo` | `Refresco`.
 * __layout:__ id de un registro en la tabla layouts.
 * __responsible:__ responsable del proceso.
 * __template_name:__ nombre identificador del proceso.
@@ -48,10 +46,12 @@ Es un método post que registra un nuevo proceso en la base de datos:
     "id": string;
     "company": string | null;
     "loadType": string | null;
-    "processType": string | null;
     "layout": string | null;
     "responsible": string | null;
     "templateName": string | null;
+    "startDate": string | null;
+    "records": number;
+    "status": 'Pendiente' | 'En progreso' | 'Pausado' | 'Error' | 'Finalizado' | 'Cancelado';
 }
 ```
 
@@ -77,7 +77,6 @@ Es un método put que modifica los valores de un proceso en la base de datos:
 {
     "company": string | null;
     "load_type": string | null;
-    "process_type": string | null;
     "layout": string | null;
     "responsible": string | null;
     "template_name": string | null;
@@ -86,7 +85,6 @@ Es un método put que modifica los valores de un proceso en la base de datos:
 
 * __company:__ id de un registro en la tabla companies.
 * __load_type:__ id de un registro en la tabla load_types.
-* __process_type:__ uno de dos valores: `Flujo` | `Refresco`.
 * __layout:__ id de un registro en la tabla layouts.
 * __responsible:__ responsable del proceso.
 * __template_name:__ nombre identificador del proceso.
@@ -98,10 +96,12 @@ Es un método put que modifica los valores de un proceso en la base de datos:
     "id": string;
     "company": string | null;
     "loadType": string | null;
-    "processType": string | null;
     "layout": string | null;
     "responsible": string | null;
     "templateName": string | null;
+    "startDate": string | null;
+    "records": number;
+    "status": 'Pendiente' | 'En progreso' | 'Pausado' | 'Error' | 'Finalizado' | 'Cancelado';
 }
 ```
 
@@ -110,5 +110,29 @@ Es un método put que modifica los valores de un proceso en la base de datos:
 {
     "message": string,
     "errors": Record<string, string[]>
+}
+```
+
+### 3. Mostrar un proceso
+
+Es un método get que muestra los valores de un proceso en la base de datos:
+
+#### Path Params
+
+`id`: id del proceso que se quiere modificar
+
+#### Response body
+
+```ts
+{
+    "id": string;
+    "company": string | null;
+    "loadType": string | null;
+    "layout": string | null;
+    "responsible": string | null;
+    "templateName": string | null;
+    "startDate": string | null;
+    "records": number;
+    "status": 'Pendiente' | 'En progreso' | 'Pausado' | 'Error' | 'Finalizado' | 'Cancelado';
 }
 ```

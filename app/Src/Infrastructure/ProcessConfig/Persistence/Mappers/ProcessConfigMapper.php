@@ -15,10 +15,12 @@ final class ProcessConfigMapper
         $data = [
             'company_id' => $entity->company()?->value(),
             'load_type_id' => $entity->loadType()?->value(),
-            'process_type' => $entity->processType()?->value,
             'layout_id' => $entity->layout()?->value(),
             'responsible' => $entity->responsible()?->value(),
             'template_name' => $entity->templateName()?->value(),
+            'start_date' => $entity->startDate()?->value(),
+            'records' => $entity->records()->value(),
+            'status' => $entity->status()->value,
         ];
 
         $model = $model->fill($data);
@@ -32,10 +34,12 @@ final class ProcessConfigMapper
             $model->_id,
             $model->company_id,
             $model->load_type_id,
-            $model->process_type,
             $model->layout_id,
             $model->responsible,
             $model->template_name,
+            $model->start_date,
+            $model->records,
+            $model->status,
         );
     }
 }

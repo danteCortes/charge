@@ -25,7 +25,7 @@ class ProcessConfigController
 
     public function update(UpdateProcessConfigRequest $request, string $id): JsonResponse
     {
-        return $this->service->update($request, $id);
+        return $this->service->update($request->toDTO(), $id);
     }
 
     public function files(string $id): JsonResponse
