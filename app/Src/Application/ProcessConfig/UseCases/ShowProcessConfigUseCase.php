@@ -24,17 +24,19 @@ class ShowProcessConfigUseCase
         $entity = $this->repository->findById(ProcessConfigId::create($id));
 
         if (! $entity) {
-            abort(404, 'Entidad no encontrada.');
+            throw new NotFoundException('Entidad no encontrada.');
         }
 
         return ProcessConfigResponse::create(
             $entity->id()?->value(),
             $entity->company()?->value(),
             $entity->loadType()?->value(),
-            $entity->processType()?->value,
             $entity->layout()?->value(),
             $entity->responsible()?->value(),
-            $entity->templateName()?->value()
+            $entity->templateName()?->value(),
+            $entity->startDate()?->value(),
+            $entity->records()->value(),
+            $entity->status()->value,
         );
     }
 }

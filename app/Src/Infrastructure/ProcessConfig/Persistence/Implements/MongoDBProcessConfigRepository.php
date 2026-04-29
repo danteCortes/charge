@@ -13,7 +13,6 @@ class MongoDBProcessConfigRepository implements ProcessConfigRepository
 {
     public function save(ProcessConfig $entity): ProcessConfig
     {
-        \Log::info((array) $entity);
         $model = ProcessConfigMapper::toModel($entity);
         $model->save();
 
