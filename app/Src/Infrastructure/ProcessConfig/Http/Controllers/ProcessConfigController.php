@@ -6,6 +6,7 @@ use App\Src\Infrastructure\ProcessConfig\Http\Requests\CreateProcessConfigReques
 use App\Src\Infrastructure\ProcessConfig\Http\Requests\UpdateProcessConfigRequest;
 use App\Src\Infrastructure\ProcessConfig\Http\Services\ProcessConfigService;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ProcessConfigController
 {
@@ -31,5 +32,10 @@ class ProcessConfigController
     public function files(string $id): JsonResponse
     {
         return $this->service->files($id);
+    }
+
+    public function list(Request $request): JsonResponse
+    {
+        return $this->service->list($request);
     }
 }

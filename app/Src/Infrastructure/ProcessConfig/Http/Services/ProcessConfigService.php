@@ -2,12 +2,15 @@
 
 namespace App\Src\Infrastructure\ProcessConfig\Http\Services;
 
+use App\Src\Application\ProcessConfig\DTOs\ListProcessDTO;
 use App\Src\Application\ProcessConfig\DTOs\ProcessConfigDTO;
 use App\Src\Application\ProcessConfig\UseCases\GetFilesByProcessConfigUseCase;
+use App\Src\Application\ProcessConfig\UseCases\ListProcessUseCase;
 use App\Src\Application\ProcessConfig\UseCases\SaveProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\ShowProcessConfigUseCase;
 use App\Src\Application\ProcessConfig\UseCases\UpdateProcessConfigUseCase;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ProcessConfigService
 {
@@ -16,6 +19,7 @@ class ProcessConfigService
         private readonly ShowProcessConfigUseCase $showUseCase,
         private readonly UpdateProcessConfigUseCase $updateUseCase,
         private readonly GetFilesByProcessConfigUseCase $getFilesUseCase,
+        private readonly ListProcessUseCase $listProcessUseCase,
     ) {}
 
     public function store(ProcessConfigDTO $dto): JsonResponse
@@ -42,6 +46,21 @@ class ProcessConfigService
     public function files(string $id): JsonResponse
     {
         $response = $this->getFilesUseCase->execute($id);
+
+        return response()->json($response);
+    }
+
+    public function list(Request $request): JsonResponse
+    {
+        $page = $request->input('page', 1);
+        $perPage = $request->input('perPage', 10);
+        $search = $request->input('search', null);
+
+        $response = $this->listProcessUseCase->execute(ListProcessDTO::create(
+            $page,
+            $perPage,
+            $search
+        ));
 
         return response()->json($response);
     }

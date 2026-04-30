@@ -136,3 +136,44 @@ Es un método get que muestra los valores de un proceso en la base de datos:
     "status": 'Pendiente' | 'En progreso' | 'Pausado' | 'Error' | 'Finalizado' | 'Cancelado';
 }
 ```
+
+### 4. Listar procesos
+
+Es un método GET que muestra los procesos paginados registrados en la base de datos.
+
+#### Path example
+```
+{baseURL}/process/list?page=1&perPage=10&search=
+```
+
+#### Query Params
+
+`page`: Número de página que se quiere listar</br>
+`perPage`: cantidad de registros que se require listar en una página</br>
+`search`: cadena de texto por el que se quiere filtrar los registros
+
+#### Response body
+
+```ts
+{
+    total: number,
+    perPage: number,
+    page: number,
+    lastPage: number,
+    from: number | null,
+    to: number | null,
+    items: {
+        id: string,
+        company_code: string,
+        company_name: string,
+        company_status: boolean,
+        country: string,
+        loadType: string,
+        layout: string,
+        responsible: string,
+        templateName: string,
+        startDate: string | null,
+        records: number
+    }[]
+}
+```
