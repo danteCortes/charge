@@ -4,6 +4,8 @@
 - [Ruta base](#ruta-base)
 - [Proceso](#proceso)
 - [Empresas](#empresas)
+- [Interfaces](#interfaces)
+- [Tipos de cargas](#tipos-de-cargas)
 
 ## Ruta base
 La ruta base del proyecto es aquel que se mantiene en la raiz.
@@ -204,6 +206,46 @@ Es un método GET que muestra todas las empresas registradas en la base de datos
         name: string;
         responsible: string;
         status: boolean;
+    }[]
+}
+```
+
+## Interfaces
+
+### 1. Listar interfaces
+
+Es un método GET que muestra todas las interfaces registradas en la base de datos.
+
+#### Path example
+`{{baseURL}}/layout`
+
+#### Request body
+
+```ts
+{
+    layouts: {
+        id: string;
+        name: string;
+    }[]
+}
+```
+
+## Tipos de cargas
+
+### 1. Listar tipos de cargas
+
+Es un método GET que muestra todos los tipos de cargas registrados en la base de datos.
+
+#### Path example
+`{{baseURL}}/load-type`
+
+#### Request body
+
+```ts
+{
+    loadTypes: {
+        id: string;
+        name: string;
     }[]
 }
 ```
