@@ -11,7 +11,11 @@ final class CompanyMapper
     public static function toModel(Company $entity): CompanyModel
     {
         $model = $entity->id() ? CompanyModel::find($rntity->id()->value()) : new CompanyModel;
+        $model->country_id = $entity->countryId()->value();
+        $model->code = $entity->code()->value();
         $model->name = $entity->name()->value();
+        $model->responsible = $entity->responsible()->value();
+        $model->status = $entity->status()->isActive();
 
         return $model;
     }
@@ -20,7 +24,11 @@ final class CompanyMapper
     {
         return CompanyFactory::fromPrimitives(
             $model->_id,
-            $model->name
+            $model->country_id,
+            $model->code,
+            $model->name,
+            $model->responsible,
+            $model->status,
         );
     }
 }

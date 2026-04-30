@@ -1,5 +1,10 @@
 # RUTAS API DEL PROYECTO
 
+## Contenido
+- [Ruta base](#ruta-base)
+- [Proceso](#proceso)
+- [Empresas](#empresas)
+
 ## Ruta base
 La ruta base del proyecto es aquel que se mantiene en la raiz.
 En Herd puede ser el dominio virtual, para nuestro ejemplo usaremos:
@@ -12,10 +17,11 @@ El proceso es el primer registro con el que se inicia la configuración y prepar
 
 |Ruta                                   |Método |Descripción                        |
 |---------------------------------------|-------|-----------------------------------|
-|{baseURL}/process-config               |POST   |Crea un proceso nuevo              |
-|{baseURL}/process-config/{id}          |PUT    |Actualiza un proceso               |
-|{baseURL}/process-config/{id}          |GET    |Obtiene un proceso                 |
-|{baseURL}/process-config/{id}/files    |GET    |Obtiene los archivos un proceso    |
+|{baseURL}/process                      |POST   |Crea un proceso nuevo              |
+|{baseURL}/process/{id}                 |PUT    |Actualiza un proceso               |
+|{baseURL}/process/{id}                 |GET    |Obtiene un proceso                 |
+|{baseURL}/process/{id}/files           |GET    |Obtiene los archivos un proceso    |
+|{baseURL}/process/{id}/list            |GET    |Lista los procesos paginados       |
 
 ### 1. Guardar un nuevo proceso
 
@@ -174,6 +180,30 @@ Es un método GET que muestra los procesos paginados registrados en la base de d
         templateName: string,
         startDate: string | null,
         records: number
+    }[]
+}
+```
+
+## Empresas
+
+### 1. Listar empresas
+
+Es un método GET que muestra todas las empresas registradas en la base de datos.
+
+#### Path example
+`{{baseURL}}/company`
+
+#### Request body
+
+```ts
+{
+    companies: {
+        id: string;
+        country_id: string;
+        code: string;
+        name: string;
+        responsible: string;
+        status: boolean;
     }[]
 }
 ```

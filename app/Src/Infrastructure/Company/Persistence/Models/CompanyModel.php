@@ -15,8 +15,11 @@ class CompanyModel extends Model
     protected $table = 'companies';
 
     protected $fillable = [
+        'country_id',
         'code',
         'name',
+        'responsible',
+        'status',
     ];
 
     protected static function newFactory()

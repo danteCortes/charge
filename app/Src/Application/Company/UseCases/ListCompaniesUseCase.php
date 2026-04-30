@@ -20,7 +20,14 @@ class ListCompaniesUseCase
         $companyResponse = [];
 
         foreach ($companies as $company) {
-            $companyResponse[] = new CompanyResponse($company->id()->value(), $company->name()->value());
+            $companyResponse[] = new CompanyResponse(
+                $company->id()->value(),
+                $company->countryId()->value(),
+                $company->code()->value(),
+                $company->name()->value(),
+                $company->responsible()->value(),
+                $company->status()->isActive(),
+            );
         }
 
         return new ListCompaniesResponse($companyResponse);
