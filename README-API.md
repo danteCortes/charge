@@ -186,6 +186,44 @@ Es un método GET que muestra los procesos paginados registrados en la base de d
 }
 ```
 
+### 5. Obtener archivos
+
+Es un método GET que muestra los archivos relacionados con un proceso registrado en la base de datos.
+
+#### Path example
+```
+{baseURL}/process/{id}/files
+```
+
+#### Path Param
+
+`id`: Id del proceso del que se quiere obtener sus archivos
+
+#### Response body
+
+```ts
+{
+    importFiles: {
+        id: string;
+        fileName: string;
+        fileFormat: 'TXT' | 'CSV' | 'XLSX';
+        fileSize: number;
+        storagePath: string;
+        decimalSeparator: ',' | '.' | null;
+        fileEncoding: 'UTF-8' | 'Latin1' | 'Windows-1252' | null;
+        fileDelimiter: ';' | ',' | '|' | '\t' | null;
+        spreadsheet: number | null;
+        processConfig: string;
+        firstRowHeaders: boolean;
+        key: string | null;
+        position: number | null;
+        validRows: number;
+        duplicatedRows: number;
+        errorRows: number;
+    }[]
+}
+```
+
 ## Empresas
 
 ### 1. Listar empresas
@@ -243,9 +281,48 @@ Es un método GET que muestra todos los tipos de cargas registrados en la base d
 
 ```ts
 {
-    loadTypes: {
+    "loadTypes": {
+        "id": string;
+        "name": string;
+    }[]
+}
+```
+
+## Archivos
+
+### 1. Subir archivos
+Es un método POST para subir un array de archivos relacionados a un proceso.
+
+#### Path example
+`{baseURL}/uploaded-file`
+
+#### Form data
+|Clave          |Tipo   |Descripción                                        |
+|---------------|-------|---------------------------------------------------|
+|files[]        |file[] |Array de archivos que se quiere subir al sistema   |
+|process_config |string |Id del proceso que procesará los archivos.         |
+
+#### Response body
+```ts
+{
+    message: string;
+    data: {
         id: string;
-        name: string;
+        fileName: string;
+        fileFormat: 'TXT' | 'CSV' | 'XLSX';
+        fileSize: number;
+        storagePath: string;
+        decimalSeparator: ',' | '.' | null;
+        fileEncoding: 'UTF-8' | 'Latin1' | 'Windows-1252' | null;
+        fileDelimiter: ';' | ',' | '|' | '\t' | null;
+        spreadsheet: number | null;
+        processConfig: string;
+        firstRowHeaders: boolean;
+        key: string | null;
+        position: number | null;
+        validRows: number;
+        duplicatedRows: number;
+        errorRows: number;
     }[]
 }
 ```

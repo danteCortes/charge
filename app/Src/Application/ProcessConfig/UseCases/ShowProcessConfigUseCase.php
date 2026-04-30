@@ -5,6 +5,7 @@ namespace App\Src\Application\ProcessConfig\UseCases;
 use App\Src\Application\ProcessConfig\Responses\ProcessConfigResponse;
 use App\Src\Domain\ProcessConfig\Repositories\ProcessConfigRepository;
 use App\Src\Domain\ProcessConfig\ValueObjects\ProcessConfigId;
+use App\Src\Shared\Exceptions\NotFoundException;
 
 class ShowProcessConfigUseCase
 {

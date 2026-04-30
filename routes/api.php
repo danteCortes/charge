@@ -1,6 +1,7 @@
 <?php
 
 use App\Src\Infrastructure\Company\Http\Controllers\CompanyController;
+use App\Src\Infrastructure\ImportFile\Http\Controllers\ImportFileController;
 use App\Src\Infrastructure\Layout\Http\Controllers\LayoutController;
 use App\Src\Infrastructure\LoadType\Http\Controllers\LoadTypeController;
 use App\Src\Infrastructure\ProcessConfig\Http\Controllers\ProcessConfigController;
@@ -13,6 +14,10 @@ Route::group(['prefix' => 'process'], function () {
     Route::get('/{id}', [ProcessConfigController::class, 'show']);
     Route::put('/{id}', [ProcessConfigController::class, 'update']);
     Route::get('/{id}/files', [ProcessConfigController::class, 'files']);
+});
+Route::group(['prefix' => 'uploaded-file'], function () {
+    Route::post('/', [ImportFileController::class, 'store']);
+    Route::put('/{id}', [ImportFileController::class, 'update']);
 });
 
 Route::get('/company', [CompanyController::class, 'index']);
