@@ -19,7 +19,7 @@ class UpdateProcessConfigRequest extends FormRequest
             'load_type' => ['required', 'string', 'exists:load_types,_id'],
             'layout' => ['required', 'string', 'exists:layouts,_id'],
             'responsible' => ['required', 'string'],
-            'template_name' => ['required', 'string'],
+            'template_name' => ['nullable', 'string'],
         ];
     }
 

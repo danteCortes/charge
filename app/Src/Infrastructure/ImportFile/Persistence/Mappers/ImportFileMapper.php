@@ -10,7 +10,11 @@ final class ImportFileMapper
 {
     public static function toModel(ImportFile $entity): ImportFileModel
     {
-        $model = $entity->id() ? ImportFileModel::find($entity->id()->value()) : new ImportFileModel;
+        $model = $entity->id() ? ImportFileModel::find($entity->id()->value()) : null;
+
+        if ($model === null) {
+            $model = new ImportFileModel;
+        }
 
         $data = [
             'fileName' => $entity->fileName()->value(),

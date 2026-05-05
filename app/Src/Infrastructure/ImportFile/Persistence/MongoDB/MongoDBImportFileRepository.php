@@ -22,7 +22,7 @@ final class MongoDBImportFileRepository implements ImportFileRepository
 
     public function findById(FileId $id): ImportFile
     {
-        $model = ImportFileModel::find($id->value());
+        $model = ImportFileModel::findOrFail($id->value());
 
         return ImportFileMapper::toEntity($model);
     }
@@ -41,6 +41,10 @@ final class MongoDBImportFileRepository implements ImportFileRepository
     public function getColumnAssignmentsByImportFile(FileId $id): array
     {
         $model = ImportFileModel::find($id->value());
+
+        if ($model === null) {
+            return [];
+        }
 
         $columnAssignments = $model->columnAssignmentsModel->map(function ($column) {
             return ColumnAssignmentFactory::fromPrimitives(

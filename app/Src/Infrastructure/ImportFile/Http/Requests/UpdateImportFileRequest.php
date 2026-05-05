@@ -22,7 +22,7 @@ class UpdateImportFileRequest extends FormRequest
             'fileEncoding' => ['nullable', 'string'],
             'fileDelimiter' => ['nullable', 'string'],
             'spreadsheet' => ['nullable', 'string'],
-            'processConfig' => ['required', 'string', 'exists:process_configurations,_id'],
+            'processConfig' => ['required', 'string', 'exists:processes,_id'],
             'firstRowHeaders' => ['required', 'boolean'],
             'key' => ['nullable', 'string'],
             'position' => ['nullable', 'integer'],
