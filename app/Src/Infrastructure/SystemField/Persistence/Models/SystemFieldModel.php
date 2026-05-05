@@ -15,6 +15,9 @@ class SystemFieldModel extends Model
     protected $fillable = [
         'name',
         'description',
+        'column',
+        'position',
+        'table_name',
         'required',
     ];
 

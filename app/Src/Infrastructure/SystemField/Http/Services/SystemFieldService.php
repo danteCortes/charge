@@ -2,19 +2,24 @@
 
 namespace App\Src\Infrastructure\SystemField\Http\Services;
 
-use App\Src\Application\SystemField\UseCases\ListSystemFieldsUseCase;
+use App\Src\Infrastructure\SystemField\Persistence\Models\SystemFieldModel;
 use Illuminate\Http\JsonResponse;
 
 class SystemFieldService
 {
-    public function __construct(
-        private readonly ListSystemFieldsUseCase $listUseCase,
-    ) {}
-
     public function index(): JsonResponse
     {
-        $response = $this->listUseCase->execute();
+        $fields = SystemFieldModel::all()
+            ->sortBy('position')
+            ->map(fn ($field) => [
+                'id'       => (string) $field->_id,
+                'name'     => $field->name ?? '',
+                'column'   => $field->column ?? '',
+                'required' => (bool) ($field->required ?? false),
+                'position' => (int) ($field->position ?? 0),
+            ])
+            ->values();
 
-        return response()->json($response);
+        return response()->json(['systemFields' => $fields]);
     }
 }
