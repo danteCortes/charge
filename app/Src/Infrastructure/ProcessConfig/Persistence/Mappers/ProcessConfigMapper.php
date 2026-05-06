@@ -13,10 +13,10 @@ final class ProcessConfigMapper
         $model = $entity->id() ? ProcessConfigModel::find($entity->id()->value()) : new ProcessConfigModel;
 
         $data = [
-            'company_id' => $entity->company()?->value(),
-            'load_type_id' => $entity->loadType()?->value(),
-            'layout_id' => $entity->layout()?->value(),
-            'responsible' => $entity->responsible()?->value(),
+            'company_id' => $entity->company()->value(),
+            'layout_id' => $entity->layout()->value(),
+            'process_type' => $entity->processType()->value,
+            'responsible' => $entity->responsible()->value(),
             'template_name' => $entity->templateName()?->value(),
             'start_date' => $entity->startDate()?->value(),
             'records' => $entity->records()->value(),
@@ -33,8 +33,8 @@ final class ProcessConfigMapper
         return ProcessConfigFactory::fromPrimitives(
             $model->_id,
             $model->company_id,
-            $model->load_type_id,
             $model->layout_id,
+            $model->process_type,
             $model->responsible,
             $model->template_name,
             $model->start_date,

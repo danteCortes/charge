@@ -25,8 +25,8 @@ class SaveProcessConfigUseCase
         $entity = $this->repository->save(ProcessConfigFactory::fromPrimitives(
             null,
             $dto->company,
-            $dto->loadType,
             $dto->layout,
+            $dto->processType,
             $dto->responsible,
             $dto->templateName,
             null,
@@ -36,10 +36,10 @@ class SaveProcessConfigUseCase
 
         return ProcessConfigResponse::create(
             $entity->id()?->value(),
-            $entity->company()?->value(),
-            $entity->loadType()?->value(),
-            $entity->layout()?->value(),
-            $entity->responsible()?->value(),
+            $entity->company()->value(),
+            $entity->layout()->value(),
+            $entity->processType()->value,
+            $entity->responsible()->value(),
             $entity->templateName()?->value(),
             $entity->startdate()?->value(),
             $entity->records()->value(),

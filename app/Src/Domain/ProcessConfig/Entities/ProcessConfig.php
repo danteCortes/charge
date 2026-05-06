@@ -2,10 +2,10 @@
 
 namespace App\Src\Domain\ProcessConfig\Entities;
 
+use App\Src\Domain\ProcessConfig\Enums\ProcessType;
 use App\Src\Domain\ProcessConfig\Enums\Status;
 use App\Src\Domain\ProcessConfig\ValueObjects\CompanyId;
 use App\Src\Domain\ProcessConfig\ValueObjects\LayoutId;
-use App\Src\Domain\ProcessConfig\ValueObjects\LoadTypeId;
 use App\Src\Domain\ProcessConfig\ValueObjects\ProcessConfigId;
 use App\Src\Domain\ProcessConfig\ValueObjects\Records;
 use App\Src\Domain\ProcessConfig\ValueObjects\Responsible;
@@ -17,10 +17,10 @@ class ProcessConfig
     private function __construct(
         private readonly ?ProcessConfigId $id,
         private readonly CompanyId $company,
-        private readonly LoadTypeId $loadType,
         private readonly LayoutId $layout,
+        private readonly ProcessType $processType,
         private readonly Responsible $responsible,
-        private readonly TemplateName $templateName,
+        private readonly ?TemplateName $templateName,
         private readonly ?StartDate $startDate,
         private readonly Records $records,
         private readonly Status $status,
@@ -28,10 +28,10 @@ class ProcessConfig
 
     public static function create(
         ?ProcessConfigId $id,
-        ?CompanyId $company,
-        ?LoadTypeId $loadType,
-        ?LayoutId $layout,
-        ?Responsible $responsible,
+        CompanyId $company,
+        LayoutId $layout,
+        ProcessType $processType,
+        Responsible $responsible,
         ?TemplateName $templateName,
         ?StartDate $startDate,
         Records $records,
@@ -40,8 +40,8 @@ class ProcessConfig
         return new self(
             $id,
             $company,
-            $loadType,
             $layout,
+            $processType,
             $responsible,
             $templateName,
             $startDate,
@@ -55,22 +55,22 @@ class ProcessConfig
         return $this->id;
     }
 
-    public function company(): ?CompanyId
+    public function company(): CompanyId
     {
         return $this->company;
     }
 
-    public function loadType(): ?LoadTypeId
-    {
-        return $this->loadType;
-    }
-
-    public function layout(): ?LayoutId
+    public function layout(): LayoutId
     {
         return $this->layout;
     }
 
-    public function responsible(): ?Responsible
+    public function processType(): ProcessType
+    {
+        return $this->processType;
+    }
+
+    public function responsible(): Responsible
     {
         return $this->responsible;
     }

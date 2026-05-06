@@ -15,10 +15,10 @@ class CreateProcessConfigRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'company' => ['nullable', 'string', 'exists:companies,_id'],
-            'load_type' => ['nullable', 'string', 'exists:load_types,_id'],
-            'layout' => ['nullable', 'string', 'exists:layouts,_id'],
-            'responsible' => ['nullable', 'string'],
+            'company' => ['required', 'string', 'exists:companies,_id'],
+            'layout' => ['required', 'string', 'exists:layouts,_id'],
+            'process_type' => ['required', 'string', 'in:Flujo,Refresco'],
+            'responsible' => ['required', 'string'],
             'template_name' => ['nullable', 'string'],
         ];
     }
@@ -27,7 +27,7 @@ class CreateProcessConfigRequest extends FormRequest
     {
         return [
             'company' => 'empresa',
-            'load_type' => 'tipo de carga',
+            'process_type' => 'tipo de proceso',
             'layout' => 'interfaz',
             'responsible' => 'responsable',
             'template_name' => 'nombre del template',
@@ -38,8 +38,8 @@ class CreateProcessConfigRequest extends FormRequest
     {
         return ProcessConfigDTO::create(
             $this->validated('company'),
-            $this->validated('load_type'),
             $this->validated('layout'),
+            $this->validated('process_type'),
             $this->validated('responsible'),
             $this->validated('template_name'),
         );

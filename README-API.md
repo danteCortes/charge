@@ -26,48 +26,65 @@ El proceso es el primer registro con el que se inicia la configuración y prepar
 |{baseURL}/process/{id}/list            |GET    |Lista los procesos paginados       |
 
 ### 1. Guardar un nuevo proceso
-
+`*POST*` `/api/process`
 Es un método post que registra un nuevo proceso en la base de datos:
 
 #### Request Body:
-
 ```ts
 {
-    "company": string | null;
-    "load_type": string | null;
-    "layout": string | null;
-    "responsible": string | null;
+    "company": string;
+    "layout": string;
+    "process_type": string;
+    "responsible": string;
     "template_name": string | null;
 }
 ```
 
 * __company:__ id de un registro en la tabla companies.
-* __load_type:__ id de un registro en la tabla load_types.
 * __layout:__ id de un registro en la tabla layouts.
+* __process_type:__ tipo de proceso Flujo o Refresco.
 * __responsible:__ responsable del proceso.
 * __template_name:__ nombre identificador del proceso.
 
-#### Response body
-
+#### ✅ 201 Response body
 ```ts
 {
     "id": string;
-    "company": string | null;
-    "loadType": string | null;
-    "layout": string | null;
-    "responsible": string | null;
-    "templateName": string | null;
-    "startDate": string | null;
+    "company": string;
+    "layout": string;
+    "process_type": string;
+    "responsible": string;
+    "template_name": string | null;
+    "start_date": string | null;
     "records": number;
     "status": 'Pendiente' | 'En progreso' | 'Pausado' | 'Error' | 'Finalizado' | 'Cancelado';
 }
 ```
 
-#### Response Validation
+#### ❌ 422 Response Validation
 ```ts
 {
     "message": string,
     "errors": Record<string, string[]>
+}
+```
+```ts
+{
+    "message": "El campo empresa es obligatorio. (and 3 more errors)",
+    "errors": {
+        "company": [
+            "El campo empresa es obligatorio."
+        ],
+        "layout": [
+            "El campo interfaz es obligatorio."
+        ],
+        "process_type": [
+            "El campo tipo de proceso es obligatorio."
+        ],
+        "responsible": [
+            "El campo responsable es obligatorio."
+        ]
+    }
 }
 ```
 
