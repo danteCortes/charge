@@ -248,6 +248,44 @@ Es un método GET que muestra todas las empresas registradas en la base de datos
 }
 ```
 
+### 2. Listar empresas por país
+`*GET*` `/api/company/get-companies-by-country`
+Es un método GET que muestra todas las empresas registradas en la base de datos que tengan el id del pais en consulta.
+
+#### Path example
+`{{baseURL}}/company/get-companies-by-country?country_id={country_id}`
+
+#### ✅ 200 Request body
+```ts
+{
+    "companies": {
+        "id": string;
+        "country_id": string;
+        "code": string;
+        "name": string;
+        "fantasy_name": string;
+        "responsible": string;
+        "status": boolean;
+    }[]
+}
+```
+
+#### ❌ 422 Validation errors
+```ts
+{
+    "errors": Record<string, string[]>;
+}
+```
+```json
+{
+    "errors": {
+        "country_id": [
+            "El id del país es obligatorio."
+        ]
+    }
+}
+```
+
 ## Interfaces
 
 ### 1. Listar interfaces
@@ -295,6 +333,21 @@ Es un método POST para subir un array de archivos relacionados a un proceso.
 
 #### Path example
 `{baseURL}/uploaded-file`
+
+#### Form data
+|Clave          |Tipo   |Descripción                                        |
+|---------------|-------|---------------------------------------------------|
+|files[]        |file[] |Array de archivos que se quiere subir al sistema   |
+|process_config |string |Id del proceso que procesará los archivos.         |
+
+#### Response body
+
+### 2. Actualizar archivo
+**`PUT`** /api/uploaded-file/{id}
+Es un método PUT para modificar los datos de un archivo relacionados a un proceso.
+
+#### Path example
+`{baseURL}/uploaded-file/jhsdfhw745837eyrfodf`
 
 #### Form data
 |Clave          |Tipo   |Descripción                                        |

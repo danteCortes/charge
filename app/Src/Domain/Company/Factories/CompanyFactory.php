@@ -7,6 +7,7 @@ use App\Src\Domain\Company\Enums\Status;
 use App\Src\Domain\Company\ValueObjects\Code;
 use App\Src\Domain\Company\ValueObjects\CompanyId;
 use App\Src\Domain\Company\ValueObjects\CountryId;
+use App\Src\Domain\Company\ValueObjects\FantasyName;
 use App\Src\Domain\Company\ValueObjects\Name;
 use App\Src\Domain\Company\ValueObjects\Responsible;
 
@@ -17,6 +18,7 @@ class CompanyFactory
         string $countryId,
         string $code,
         string $name,
+        string $fantasyName,
         string $responsible,
         bool $status,
     ): Company {
@@ -25,6 +27,7 @@ class CompanyFactory
             CountryId::create($countryId),
             Code::create($code),
             Name::create($name),
+            FantasyName::create($fantasyName),
             Responsible::create($responsible),
             $status ? Status::ACTIVE : Status::INACTIVE,
         );

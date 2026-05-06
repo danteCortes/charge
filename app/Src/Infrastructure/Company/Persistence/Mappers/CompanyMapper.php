@@ -14,6 +14,7 @@ final class CompanyMapper
         $model->country_id = $entity->countryId()->value();
         $model->code = $entity->code()->value();
         $model->name = $entity->name()->value();
+        $model->fantasy_name = $entity->fantasyName()->value();
         $model->responsible = $entity->responsible()->value();
         $model->status = $entity->status()->isActive();
 
@@ -27,6 +28,7 @@ final class CompanyMapper
             $model->country_id,
             $model->code,
             $model->name,
+            $model->fantasy_name,
             $model->responsible,
             $model->status,
         );

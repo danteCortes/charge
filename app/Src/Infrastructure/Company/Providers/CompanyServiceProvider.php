@@ -2,6 +2,7 @@
 
 namespace App\Src\Infrastructure\Company\Providers;
 
+use App\Src\Application\Company\UseCases\GetCompaniesByCountryIdUseCase;
 use App\Src\Application\Company\UseCases\ListCompanyUseCase;
 use App\Src\Domain\Company\Repositories\CompanyRepository;
 use App\Src\Infrastructure\Company\Persistence\Implements\MongoDBCompanyRepository;
@@ -14,6 +15,9 @@ class CompanyServiceProvider extends ServiceProvider
         $this->app->bind(CompanyRepository::class, MongoDBCompanyRepository::class);
         $this->app->bind(ListCompanyUseCase::class, function ($app) {
             return ListCompanyUseCase::create($app->make(CompanyRepository::class));
+        });
+        $this->app->bind(GetCompaniesByCountryIdUseCase::class, function ($app) {
+            return GetCompaniesByCountryIdUseCase::create($app->make(CompanyRepository::class));
         });
     }
 

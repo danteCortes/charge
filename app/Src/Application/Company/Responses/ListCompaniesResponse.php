@@ -5,7 +5,7 @@ namespace App\Src\Application\Company\Responses;
 final class ListCompaniesResponse
 {
     /**
-     * @param ComapnyResponse[]
+     * @param CompanyResponse[]
      */
     public function __construct(
         public readonly array $companies,

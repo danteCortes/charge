@@ -19,8 +19,11 @@ Route::group(['prefix' => 'uploaded-file'], function () {
     Route::post('/', [ImportFileController::class, 'store']);
     Route::put('/{id}', [ImportFileController::class, 'update']);
 });
+Route::group(['prefix' => 'company'], function () {
+    Route::get('/', [CompanyController::class, 'index']);
+    Route::get('/get-companies-by-country', [CompanyController::class, 'getCompaniesByCountryId']);
+});
 
-Route::get('/company', [CompanyController::class, 'index']);
 Route::get('/layout', [LayoutController::class, 'index']);
 Route::get('/load-type', [LoadTypeController::class, 'index']);
 Route::get('/system-field', [SystemFieldController::class, 'index']);

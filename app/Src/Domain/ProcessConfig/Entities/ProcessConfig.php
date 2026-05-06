@@ -16,11 +16,11 @@ class ProcessConfig
 {
     private function __construct(
         private readonly ?ProcessConfigId $id,
-        private readonly ?CompanyId $company,
-        private readonly ?LoadTypeId $loadType,
-        private readonly ?LayoutId $layout,
-        private readonly ?Responsible $responsible,
-        private readonly ?TemplateName $templateName,
+        private readonly CompanyId $company,
+        private readonly LoadTypeId $loadType,
+        private readonly LayoutId $layout,
+        private readonly Responsible $responsible,
+        private readonly TemplateName $templateName,
         private readonly ?StartDate $startDate,
         private readonly Records $records,
         private readonly Status $status,

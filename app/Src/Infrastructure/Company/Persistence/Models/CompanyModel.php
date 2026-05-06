@@ -18,6 +18,7 @@ class CompanyModel extends Model
         'country_id',
         'code',
         'name',
+        'fantasy_name',
         'responsible',
         'status',
     ];

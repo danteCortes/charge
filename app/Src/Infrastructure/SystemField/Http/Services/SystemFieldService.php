@@ -12,9 +12,9 @@ class SystemFieldService
         $fields = SystemFieldModel::all()
             ->sortBy('position')
             ->map(fn ($field) => [
-                'id'       => (string) $field->_id,
-                'name'     => $field->name ?? '',
-                'column'   => $field->column ?? '',
+                'id' => (string) $field->_id,
+                'name' => $field->name ?? '',
+                'column' => $field->column ?? '',
                 'required' => (bool) ($field->required ?? false),
                 'position' => (int) ($field->position ?? 0),
             ])

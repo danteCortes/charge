@@ -16,8 +16,8 @@ class CompanySeeder extends Seeder
         $chile = \DB::connection('mongodb')->table('countries')->where('alpha2', 'CL')->first();
         $mexico = \DB::connection('mongodb')->table('countries')->where('alpha2', 'MX')->first();
 
-        CompanyModel::firstOrCreate(['country_id' => "$argentina->id", 'code' => 'EMP001', 'name' => 'Empresa Demo S.A.', 'responsible' => 'Juan Pérez', 'status' => true]);
-        CompanyModel::firstOrCreate(['country_id' => "$chile->id", 'code' => 'EMP002', 'name' => 'Servicios Integrales Ltda.', 'responsible' => 'María González', 'status' => true]);
-        CompanyModel::firstOrCreate(['country_id' => "$mexico->id", 'code' => 'EMP003', 'name' => 'Tecnología Avanzada Inc.', 'responsible' => 'Carlos Rodríguez', 'status' => false]);
+        CompanyModel::firstOrCreate(['country_id' => "$argentina->id", 'code' => 'EMP001', 'name' => 'Empresa Demo S.A.', 'fantasy_name' => 'Demo Corp', 'responsible' => 'Juan Pérez', 'status' => true]);
+        CompanyModel::firstOrCreate(['country_id' => "$chile->id", 'code' => 'EMP002', 'name' => 'Servicios Integrales Ltda.', 'fantasy_name' => 'Demo Corp', 'responsible' => 'María González', 'status' => true]);
+        CompanyModel::firstOrCreate(['country_id' => "$mexico->id", 'code' => 'EMP003', 'name' => 'Tecnología Avanzada Inc.', 'fantasy_name' => 'TechAdv', 'responsible' => 'Carlos Rodríguez', 'status' => false]);
     }
 }

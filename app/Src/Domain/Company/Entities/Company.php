@@ -6,6 +6,7 @@ use App\Src\Domain\Company\Enums\Status;
 use App\Src\Domain\Company\ValueObjects\Code;
 use App\Src\Domain\Company\ValueObjects\CompanyId;
 use App\Src\Domain\Company\ValueObjects\CountryId;
+use App\Src\Domain\Company\ValueObjects\FantasyName;
 use App\Src\Domain\Company\ValueObjects\Name;
 use App\Src\Domain\Company\ValueObjects\Responsible;
 
@@ -16,6 +17,7 @@ class Company
         private readonly CountryId $countryId,
         private readonly Code $code,
         private readonly Name $name,
+        private readonly FantasyName $fantasyName,
         private readonly Responsible $responsible,
         private readonly Status $status,
     ) {}
@@ -25,6 +27,7 @@ class Company
         CountryId $countryId,
         Code $code,
         Name $name,
+        FantasyName $fantasyName,
         Responsible $responsible,
         Status $status,
     ): self {
@@ -33,6 +36,7 @@ class Company
             $countryId,
             $code,
             $name,
+            $fantasyName,
             $responsible,
             $status,
         );
@@ -56,6 +60,11 @@ class Company
     public function name(): Name
     {
         return $this->name;
+    }
+
+    public function fantasyName(): FantasyName
+    {
+        return $this->fantasyName;
     }
 
     public function responsible(): Responsible
