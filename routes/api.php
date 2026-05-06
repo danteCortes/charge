@@ -1,6 +1,7 @@
 <?php
 
 use App\Src\Infrastructure\Company\Http\Controllers\CompanyController;
+use App\Src\Infrastructure\Country\Http\Controllers\CountryController;
 use App\Src\Infrastructure\ImportFile\Http\Controllers\ImportFileController;
 use App\Src\Infrastructure\Layout\Http\Controllers\LayoutController;
 use App\Src\Infrastructure\LoadType\Http\Controllers\LoadTypeController;
@@ -22,6 +23,10 @@ Route::group(['prefix' => 'uploaded-file'], function () {
 Route::group(['prefix' => 'company'], function () {
     Route::get('/', [CompanyController::class, 'index']);
     Route::get('/get-companies-by-country', [CompanyController::class, 'getCompaniesByCountryId']);
+});
+Route::group(['prefix' => 'country'], function () {
+    Route::get('', [CountryController::class, 'list']);
+    Route::get('/{id}/companies', [CountryController::class, 'companies']);
 });
 
 Route::get('/layout', [LayoutController::class, 'index']);

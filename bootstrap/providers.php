@@ -3,6 +3,7 @@
 use App\Providers\AppServiceProvider;
 use App\Src\Infrastructure\ColumnAssignment\Providers\ColumnAssignmentServiceProvider;
 use App\Src\Infrastructure\Company\Providers\CompanyServiceProvider;
+use App\Src\Infrastructure\Country\Providers\CountryServiceProvider;
 use App\Src\Infrastructure\ImportFile\Providers\ChargeServiceProvider;
 use App\Src\Infrastructure\Layout\Providers\LayoutServiceProvider;
 use App\Src\Infrastructure\LoadType\Providers\LoadTypeServiceProvider;
@@ -20,4 +21,5 @@ return [
     LoadTypeServiceProvider::class,
     SystemFieldServiceProvider::class,
     ColumnAssignmentServiceProvider::class,
+    CountryServiceProvider::class,
 ];
