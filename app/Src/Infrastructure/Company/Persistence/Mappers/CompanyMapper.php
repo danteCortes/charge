@@ -10,11 +10,11 @@ final class CompanyMapper
 {
     public static function toModel(Company $entity): CompanyModel
     {
-        $model = $entity->id() ? CompanyModel::find($rntity->id()->value()) : new CompanyModel;
+        $model = $entity->id() ? CompanyModel::find($entity->id()->value()) : new CompanyModel;
         $model->country_id = $entity->countryId()->value();
         $model->code = $entity->code()->value();
         $model->name = $entity->name()->value();
-        $model->fantasy_name = $entity->fantasyName()->value();
+        $model->fantasy_name = $entity->fantasyName()?->value();
         $model->responsible = $entity->responsible()->value();
         $model->status = $entity->status()->isActive();
 

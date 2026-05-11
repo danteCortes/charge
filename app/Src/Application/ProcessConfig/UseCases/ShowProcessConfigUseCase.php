@@ -30,10 +30,10 @@ class ShowProcessConfigUseCase
 
         return ProcessConfigResponse::create(
             $entity->id()?->value(),
-            $entity->company()?->value(),
-            $entity->loadType()?->value(),
-            $entity->layout()?->value(),
-            $entity->responsible()?->value(),
+            $entity->company()->value(),
+            $entity->layout()->value(),
+            $entity->processType()->value,
+            $entity->responsible()->value(),
             $entity->templateName()?->value(),
             $entity->startDate()?->value(),
             $entity->records()->value(),

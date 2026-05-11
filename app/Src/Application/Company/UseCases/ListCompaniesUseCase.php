@@ -21,11 +21,11 @@ class ListCompaniesUseCase
 
         foreach ($companies as $company) {
             $companyResponse[] = new CompanyResponse(
-                $company->id()->value(),
+                $company->id()?->value(),
                 $company->countryId()->value(),
                 $company->code()->value(),
                 $company->name()->value(),
-                $company->fantasyName()->value(),
+                $company->fantasyName()?->value(),
                 $company->responsible()->value(),
                 $company->status()->isActive(),
             );

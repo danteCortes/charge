@@ -29,7 +29,7 @@ class GetCompaniesByCountryIdUseCase
                     $entity->countryId()->value(),
                     $entity->code()->value(),
                     $entity->name()->value(),
-                    $entity->fantasyName()->value(),
+                    $entity->fantasyName()?->value(),
                     $entity->responsible()->value(),
                     $entity->status()->isActive(),
                 ),

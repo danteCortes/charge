@@ -17,7 +17,7 @@ class Company
         private readonly CountryId $countryId,
         private readonly Code $code,
         private readonly Name $name,
-        private readonly FantasyName $fantasyName,
+        private readonly ?FantasyName $fantasyName,
         private readonly Responsible $responsible,
         private readonly Status $status,
     ) {}
@@ -27,7 +27,7 @@ class Company
         CountryId $countryId,
         Code $code,
         Name $name,
-        FantasyName $fantasyName,
+        ?FantasyName $fantasyName,
         Responsible $responsible,
         Status $status,
     ): self {
@@ -62,7 +62,7 @@ class Company
         return $this->name;
     }
 
-    public function fantasyName(): FantasyName
+    public function fantasyName(): ?FantasyName
     {
         return $this->fantasyName;
     }

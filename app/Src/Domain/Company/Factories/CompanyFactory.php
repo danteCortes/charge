@@ -18,7 +18,7 @@ class CompanyFactory
         string $countryId,
         string $code,
         string $name,
-        string $fantasyName,
+        ?string $fantasyName,
         string $responsible,
         bool $status,
     ): Company {
@@ -27,7 +27,7 @@ class CompanyFactory
             CountryId::create($countryId),
             Code::create($code),
             Name::create($name),
-            FantasyName::create($fantasyName),
+            $fantasyName ? FantasyName::create($fantasyName) : null,
             Responsible::create($responsible),
             $status ? Status::ACTIVE : Status::INACTIVE,
         );

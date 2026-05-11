@@ -41,9 +41,9 @@ class SaveProcessConfigUseCase
             $entity->processType()->value,
             $entity->responsible()->value(),
             $entity->templateName()?->value(),
-            $entity->startdate()?->value(),
+            $entity->startDate()?->value(),
             $entity->records()->value(),
-            $entity->status()?->value,
+            $entity->status()->value,
         );
     }
 }

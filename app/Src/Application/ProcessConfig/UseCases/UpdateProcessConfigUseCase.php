@@ -32,8 +32,8 @@ class UpdateProcessConfigUseCase
         $entity = $this->repository->save(ProcessConfigFactory::fromPrimitives(
             $id,
             $dto->company,
-            $dto->loadType,
             $dto->layout,
+            $dto->processType,
             $dto->responsible,
             $dto->templateName,
             $processConfig->startDate()?->value(),
@@ -43,10 +43,10 @@ class UpdateProcessConfigUseCase
 
         return ProcessConfigResponse::create(
             $entity->id()?->value(),
-            $entity->company()?->value(),
-            $entity->loadType()?->value(),
-            $entity->layout()?->value(),
-            $entity->responsible()?->value(),
+            $entity->company()->value(),
+            $entity->layout()->value(),
+            $entity->processType()->value,
+            $entity->responsible()->value(),
             $entity->templateName()?->value(),
             $entity->startDate()?->value(),
             $entity->records()->value(),

@@ -34,12 +34,12 @@ final class ProcessConfigMapper
             $model->_id,
             $model->company_id,
             $model->layout_id,
-            $model->process_type,
+            $model->process_type ?? 'Flujo',
             $model->responsible,
             $model->template_name,
             $model->start_date,
-            $model->records,
-            $model->status,
+            $model->records ?? 0,
+            $model->status ?? 'Pendiente',
         );
     }
 }
